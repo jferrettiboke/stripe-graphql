@@ -1,0 +1,9 @@
+{
+  "name": "stripe-graphql",
+  "version": "0.1.0",
+  "description": "Stripe API implementation in GraphQL.",
+  "main": "index.js",
+  "repository": "https://github.com/jferrettiboke/stripe-graphql.git",
+  "author": "Jesús Ferretti <jferrettiboke@gmail.com>",
+  "license": "MIT"
+}
