@@ -2,8 +2,23 @@
   "name": "stripe-graphql",
   "version": "0.1.0",
   "description": "Stripe API implementation in GraphQL.",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/jferrettiboke/stripe-graphql.git",
   "author": "Jesús Ferretti <jferrettiboke@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon -r dotenv/config src/server.js",
+    "playground": "graphql playground"
+  },
+  "dependencies": {
+    "graphql-tools": "^3.1.1",
+    "require-graphql-file": "^1.0.1",
+    "stripe": "^6.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "graphql-cli": "^2.16.7",
+    "graphql-yoga": "^1.16.2",
+    "nodemon": "^1.18.4"
+  }
 }
