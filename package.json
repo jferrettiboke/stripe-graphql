@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon -r dotenv/config src/server.js",
-    "playground": "graphql playground"
+    "playground": "graphql playground",
+    "example": "nodemon -r dotenv/config example/server.js"
   },
   "dependencies": {
     "graphql-import": "^0.7.1",
