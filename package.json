@@ -11,8 +11,8 @@
     "playground": "graphql playground"
   },
   "dependencies": {
+    "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.0",
-    "require-graphql-file": "^1.0.1",
     "stripe": "^6.10.0"
   },
   "devDependencies": {

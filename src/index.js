@@ -1,7 +1,8 @@
-const requireGraphQLFile = require("require-graphql-file");
 const { makeExecutableSchema } = require("graphql-tools");
+const { importSchema } = require("graphql-import");
+
+const typeDefs = importSchema("./src/schema.graphql");
 const resolvers = require("./resolvers");
-const typeDefs = requireGraphQLFile("./schema");
 
 const schema = makeExecutableSchema({
   typeDefs,
