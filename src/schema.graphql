@@ -3,6 +3,7 @@ type Query {
   customer(id: ID!): Customer
   connectedAccounts: [ConnectedAccount!]!
   connectedAccount(id: ID!): ConnectedAccount
+  countrySpecs(country: String!): CountrySpec
 }
 
 type Customer {
@@ -55,6 +56,23 @@ type Card {
   last4: String
   name: String
   tokenization_method: String
+}
+
+type CountrySpec {
+  id: String
+  object: String
+  default_currency: String
+  verification_fields: AccountVerificationFields!
+}
+
+type AccountVerificationFields {
+  individual: VerificationFields!
+  company: VerificationFields!
+}
+
+type VerificationFields {
+  minimum: [String]
+  additional: [String]
 }
 
 enum CARD_FUNDING_TYPE {

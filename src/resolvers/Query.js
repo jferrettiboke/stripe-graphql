@@ -15,6 +15,10 @@ const Query = {
 
   async connectedAccount(root, { id }, context, info) {
     return await context.stripe.accounts.retrieve(id);
+  },
+
+  async countrySpecs(root, { country }, context, info) {
+    return await context.stripe.countrySpecs.retrieve(country);
   }
 };
 
