@@ -17,6 +17,13 @@ type ConnectedAccount {
   id: ID!
   cards: [Card!]!
   bankAccounts: [BankAccount!]!
+  verification: ConnectedAccountVerification!
+}
+
+type ConnectedAccountVerification {
+  disabled_reason: String
+  due_by: Int
+  fields_needed: [String]
 }
 
 type BankAccount {
