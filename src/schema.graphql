@@ -15,6 +15,7 @@ type Customer {
 
 type ConnectedAccount {
   id: ID!
+  country: String!
   cards: [Card!]!
   bankAccounts: [BankAccount!]!
   legal_entity: LegalEntity
