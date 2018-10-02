@@ -17,7 +17,44 @@ type ConnectedAccount {
   id: ID!
   cards: [Card!]!
   bankAccounts: [BankAccount!]!
+  legal_entity: LegalEntity
   verification: ConnectedAccountVerification!
+}
+
+type LegalEntity {
+  type: LEGAL_ENTITY_TYPE
+  additional_owners: [AdditionalOwner!]!
+  address: Address
+  dob: Dob
+  first_name: String
+  last_name: String
+  maiden_name: String
+  personal_address: Address
+  personal_id_number_provided: Boolean
+}
+
+type AdditionalOwner {
+  address: Address
+  dob: Dob
+  first_name: String
+  last_name: String
+  maiden_name: String
+  personal_id_number_provided: Boolean!
+}
+
+type Address {
+  city: String
+  country: String
+  line1: String
+  line2: String
+  postal_code: String
+  state: String
+}
+
+type Dob {
+  day: Int
+  month: Int
+  year: Int
 }
 
 type ConnectedAccountVerification {
