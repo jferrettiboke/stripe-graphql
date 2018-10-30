@@ -50,9 +50,21 @@ type BalanceTransaction {
   created: Int
   currency: String
   description: String
+  exchange_rate: Float
+  fee: Int
+  fee_details: [FeeDetails!]!
   net: Int
   source: String
   status: String
+  type: String
+}
+
+type FeeDetails {
+  id: String
+  amount: Int
+  application: String
+  currency: String
+  description: String
   type: String
 }
 
