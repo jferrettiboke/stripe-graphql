@@ -1,4 +1,8 @@
 const Query = {
+  platform(root, args, context, info) {
+    return {};
+  },
+
   async customers(root, args, context, info) {
     const { data } = await context.stripe.customers.list();
     return data;

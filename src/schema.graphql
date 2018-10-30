@@ -4,6 +4,7 @@ type Query {
   connectedAccounts: [ConnectedAccount!]!
   connectedAccount(id: ID!): ConnectedAccount
   countrySpecs(country: String!): CountrySpec
+  platform: Platform!
 }
 
 type Customer {
@@ -20,6 +21,37 @@ type ConnectedAccount {
   bankAccounts: [BankAccount!]!
   legal_entity: LegalEntity
   verification: ConnectedAccountVerification!
+}
+
+type Platform {
+  balance: Balance!
+  transactions: [BalanceTransaction!]!
+}
+
+type Balance {
+  object: String!
+  livemode: Boolean!
+  available: [BalanceItem!]!
+  pending: [BalanceItem!]!
+}
+
+type BalanceItem {
+  currency: String!
+  amount: Int!
+}
+
+type BalanceTransaction {
+  id: String!
+  object: String!
+  amount: Int
+  available_on: Int
+  created: Int
+  currency: String
+  description: String
+  net: Int
+  source: String
+  status: String
+  type: String
 }
 
 type LegalEntity {
