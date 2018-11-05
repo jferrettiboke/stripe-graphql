@@ -74,6 +74,7 @@ type Charge {
   object: String!
   amount: Int
   currency: String
+  balance_transaction: String
 }
 
 type LegalEntity {
