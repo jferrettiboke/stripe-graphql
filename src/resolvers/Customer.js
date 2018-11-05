@@ -1,14 +1,18 @@
 const Customer = {
-  id: root => root.id,
-  email: root => root.email,
-  cards: async ({ id }, args, context) => {
+  async cards({ id }, args, context) {
     const { data } = await context.stripe.customers.listCards(id);
     return data;
   },
-  bankAccounts: async ({ id }, args, context) => {
+
+  async bankAccounts({ id }, args, context) {
     const { data } = await context.stripe.customers.listSources(id, {
       object: "bank_account"
     });
+    return data;
+  },
+
+  async charges({ id }, args, context) {
+    const { data } = await context.stripe.charges.list({ customer: id });
     return data;
   }
 };

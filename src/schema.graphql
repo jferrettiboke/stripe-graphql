@@ -12,6 +12,7 @@ type Customer {
   email: String
   cards: [Card!]!
   bankAccounts: [BankAccount!]!
+  charges: [Charge!]!
 }
 
 type ConnectedAccount {
@@ -66,6 +67,13 @@ type FeeDetails {
   currency: String
   description: String
   type: String
+}
+
+type Charge {
+  id: String!
+  object: String!
+  amount: Int
+  currency: String
 }
 
 type LegalEntity {
