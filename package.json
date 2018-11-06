@@ -7,19 +7,22 @@
   "author": "Jesús Ferretti <jferrettiboke@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon -r dotenv/config src/server.js",
-    "playground": "graphql playground --port 5000",
-    "example": "nodemon -r dotenv/config example/server.js"
+    "dev": "nodemon -r dotenv/config src/server.js"
   },
   "dependencies": {
+    "graphql": "^14.0.2",
+    "graphql-binding": "^2.2.6",
     "graphql-import": "^0.7.1",
-    "graphql-tools": "^4.0.0",
-    "stripe": "^6.10.0"
+    "graphql-tools": "^4.0.3",
+    "stripe": "^6.13.0"
   },
   "devDependencies": {
-    "dotenv": "^6.0.0",
-    "graphql-cli": "^2.16.7",
-    "graphql-yoga": "^1.16.2",
-    "nodemon": "^1.18.4"
+    "dotenv": "^6.1.0",
+    "graphql-yoga": "^1.16.7",
+    "nodemon": "^1.18.6"
+  },
+  "resolutions": {
+    "graphql": "^14.0.2",
+    "**/graphql": "^14.0.2"
   }
 }

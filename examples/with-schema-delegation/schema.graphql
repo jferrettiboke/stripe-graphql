@@ -1,0 +1,7 @@
+# import CountrySpec from "../../src/schema.graphql"
+
+type Query {
+  hello: String!
+  itCountrySpec: CountrySpec!
+  usCountrySpec: CountrySpec!
+}

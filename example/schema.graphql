@@ -1,6 +1,0 @@
-# import CountrySpec from "../src/schema.graphql"
-
-type Query {
-  hello: String
-  usCountrySpec: CountrySpec
-}

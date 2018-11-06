@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "nodemon -r dotenv/config server.js"
+  },
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "graphql-tools": "^4.0.0",
+    "graphql-yoga": "^1.16.2",
+    "stripe": "^6.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "nodemon": "^1.18.4"
+  },
+  "resolutions": {
+    "graphql": "^14.0.2",
+    "**/graphql": "^14.0.2"
+  }
+}
