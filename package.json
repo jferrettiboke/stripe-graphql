@@ -11,18 +11,14 @@
   },
   "dependencies": {
     "graphql": "^14.0.2",
-    "graphql-binding": "^2.2.6",
+    "graphql-binding": "^2.3.5",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.3",
-    "stripe": "^6.13.0"
+    "stripe": "^6.17.0"
   },
   "devDependencies": {
     "dotenv": "^6.1.0",
     "graphql-yoga": "^1.16.7",
-    "nodemon": "^1.18.6"
-  },
-  "resolutions": {
-    "graphql": "^14.0.2",
-    "**/graphql": "^14.0.2"
+    "nodemon": "^1.18.7"
   }
 }
