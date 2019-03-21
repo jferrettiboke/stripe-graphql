@@ -1,5 +1,4 @@
 import { objectType } from "nexus";
-import { resolve } from "path";
 
 export const Product = objectType({
   name: "Product",

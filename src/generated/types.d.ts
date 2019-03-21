@@ -145,6 +145,17 @@ export interface NexusGenRootTypes {
     id?: string | null; // String
     type?: string | null; // String
   }
+  Invoice: { // root type
+    amount_due: number; // Int!
+    amount_paid: number; // Int!
+    id?: string | null; // ID
+  }
+  InvoiceLineItem: { // root type
+    amount: number; // Int!
+    currency: string; // String!
+    id: string; // ID!
+    quantity: number; // Int!
+  }
   LegalEntity: { // root type
     additional_owners: NexusGenRootTypes['AdditionalOwner'][]; // [AdditionalOwner!]!
     address?: NexusGenRootTypes['Address'] | null; // Address
@@ -318,6 +329,18 @@ export interface NexusGenFieldTypes {
     id: string | null; // String
     type: string | null; // String
   }
+  Invoice: { // field return type
+    amount_due: number; // Int!
+    amount_paid: number; // Int!
+    id: string | null; // ID
+    lines: NexusGenRootTypes['InvoiceLineItem'][]; // [InvoiceLineItem!]!
+  }
+  InvoiceLineItem: { // field return type
+    amount: number; // Int!
+    currency: string; // String!
+    id: string; // ID!
+    quantity: number; // Int!
+  }
   LegalEntity: { // field return type
     additional_owners: NexusGenRootTypes['AdditionalOwner'][]; // [AdditionalOwner!]!
     address: NexusGenRootTypes['Address'] | null; // Address
@@ -348,11 +371,14 @@ export interface NexusGenFieldTypes {
     countrySpecs: NexusGenRootTypes['CountrySpec'] | null; // CountrySpec
     customer: NexusGenRootTypes['Customer'] | null; // Customer
     customers: NexusGenRootTypes['Customer'][]; // [Customer!]!
+    invoice: NexusGenRootTypes['Invoice'] | null; // Invoice
+    invoices: NexusGenRootTypes['Invoice'][]; // [Invoice!]!
     plan: NexusGenRootTypes['Plan'] | null; // Plan
     plans: NexusGenRootTypes['Plan'][]; // [Plan!]!
     platform: NexusGenRootTypes['Account']; // Account!
     product: NexusGenRootTypes['Product'] | null; // Product
     products: NexusGenRootTypes['Product'][]; // [Product!]!
+    upcomingInvoice: NexusGenRootTypes['Invoice'] | null; // Invoice
   }
   VerificationFields: { // field return type
     additional: Array<string | null> | null; // [String]
@@ -371,11 +397,17 @@ export interface NexusGenArgTypes {
     customer: { // args
       id: string; // ID!
     }
+    invoice: { // args
+      id: string; // ID!
+    }
     plan: { // args
       id: string; // ID!
     }
     product: { // args
       id: string; // ID!
+    }
+    upcomingInvoice: { // args
+      customerId: string; // ID!
     }
   }
 }
@@ -385,7 +417,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "LegalEntity" | "Plan" | "Product" | "Query" | "VerificationFields";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "Plan" | "Product" | "Query" | "VerificationFields";
 
 export type NexusGenInputNames = never;
 
