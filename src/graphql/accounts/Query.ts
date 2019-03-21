@@ -5,8 +5,8 @@ export const AccountQueries = extendType({
   definition(t) {
     t.field("platform", {
       type: "Account",
-      resolve() {
-        return {};
+      async resolve(root, args, context, info) {
+        return await context.stripe.accounts.retrieve();
       }
     });
 

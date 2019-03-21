@@ -1,8 +1,8 @@
 import { GraphQLServer } from "graphql-yoga";
-import { Stripe } from "stripe";
+import * as Stripe from "stripe";
 import schema from "./schema";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
 const server = new GraphQLServer({
   schema,
