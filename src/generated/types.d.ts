@@ -21,6 +21,17 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  Account: { // root type
+    country: string; // String!
+    id: string; // ID!
+    legal_entity?: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
+    verification: NexusGenRootTypes['AccountVerification']; // AccountVerification!
+  }
+  AccountVerification: { // root type
+    disabled_reason?: string | null; // String
+    due_by?: number | null; // Int
+    fields_needed?: Array<string | null> | null; // [String]
+  }
   AccountVerificationFields: { // root type
     company: NexusGenRootTypes['VerificationFields']; // VerificationFields!
     individual: NexusGenRootTypes['VerificationFields']; // VerificationFields!
@@ -111,17 +122,6 @@ export interface NexusGenRootTypes {
     id: string; // String!
     object: string; // String!
   }
-  ConnectedAccount: { // root type
-    country: string; // String!
-    id: string; // ID!
-    legal_entity?: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
-    verification: NexusGenRootTypes['ConnectedAccountVerification']; // ConnectedAccountVerification!
-  }
-  ConnectedAccountVerification: { // root type
-    disabled_reason?: string | null; // String
-    due_by?: number | null; // Int
-    fields_needed?: Array<string | null> | null; // [String]
-  }
   CountrySpec: { // root type
     default_currency?: string | null; // String
     id?: string | null; // String
@@ -156,7 +156,6 @@ export interface NexusGenRootTypes {
     personal_id_number_provided?: boolean | null; // Boolean
     type?: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
   }
-  Platform: {};
   Query: {};
   VerificationFields: { // root type
     additional?: Array<string | null> | null; // [String]
@@ -177,6 +176,21 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Account: { // field return type
+    balance: NexusGenRootTypes['Balance']; // Balance!
+    bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
+    cards: NexusGenRootTypes['Card'][]; // [Card!]!
+    country: string; // String!
+    id: string; // ID!
+    legal_entity: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
+    transactions: NexusGenRootTypes['BalanceTransaction'][]; // [BalanceTransaction!]!
+    verification: NexusGenRootTypes['AccountVerification']; // AccountVerification!
+  }
+  AccountVerification: { // field return type
+    disabled_reason: string | null; // String
+    due_by: number | null; // Int
+    fields_needed: Array<string | null> | null; // [String]
+  }
   AccountVerificationFields: { // field return type
     company: NexusGenRootTypes['VerificationFields']; // VerificationFields!
     individual: NexusGenRootTypes['VerificationFields']; // VerificationFields!
@@ -267,21 +281,6 @@ export interface NexusGenFieldTypes {
     id: string; // String!
     object: string; // String!
   }
-  ConnectedAccount: { // field return type
-    balance: NexusGenRootTypes['Balance']; // Balance!
-    bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
-    cards: NexusGenRootTypes['Card'][]; // [Card!]!
-    country: string; // String!
-    id: string; // ID!
-    legal_entity: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
-    transactions: NexusGenRootTypes['BalanceTransaction'][]; // [BalanceTransaction!]!
-    verification: NexusGenRootTypes['ConnectedAccountVerification']; // ConnectedAccountVerification!
-  }
-  ConnectedAccountVerification: { // field return type
-    disabled_reason: string | null; // String
-    due_by: number | null; // Int
-    fields_needed: Array<string | null> | null; // [String]
-  }
   CountrySpec: { // field return type
     default_currency: string | null; // String
     id: string | null; // String
@@ -319,17 +318,13 @@ export interface NexusGenFieldTypes {
     personal_id_number_provided: boolean | null; // Boolean
     type: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
   }
-  Platform: { // field return type
-    balance: NexusGenRootTypes['Balance']; // Balance!
-    transactions: NexusGenRootTypes['BalanceTransaction'][]; // [BalanceTransaction!]!
-  }
   Query: { // field return type
-    connectedAccount: NexusGenRootTypes['ConnectedAccount'] | null; // ConnectedAccount
-    connectedAccounts: NexusGenRootTypes['ConnectedAccount'][]; // [ConnectedAccount!]!
+    account: NexusGenRootTypes['Account'] | null; // Account
+    accounts: NexusGenRootTypes['Account'][]; // [Account!]!
     countrySpecs: NexusGenRootTypes['CountrySpec'] | null; // CountrySpec
     customer: NexusGenRootTypes['Customer'] | null; // Customer
     customers: NexusGenRootTypes['Customer'][]; // [Customer!]!
-    platform: NexusGenRootTypes['Platform']; // Platform!
+    platform: NexusGenRootTypes['Account']; // Account!
   }
   VerificationFields: { // field return type
     additional: Array<string | null> | null; // [String]
@@ -339,7 +334,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Query: {
-    connectedAccount: { // args
+    account: { // args
       id: string; // ID!
     }
     countrySpecs: { // args
@@ -356,7 +351,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "ConnectedAccount" | "ConnectedAccountVerification" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "LegalEntity" | "Platform" | "Query" | "VerificationFields";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "LegalEntity" | "Query" | "VerificationFields";
 
 export type NexusGenInputNames = never;
 

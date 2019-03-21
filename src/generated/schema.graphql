@@ -2,6 +2,23 @@
 ### Do not make changes to this file directly
 
 
+type Account {
+  balance: Balance!
+  bankAccounts: [BankAccount!]!
+  cards: [Card!]!
+  country: String!
+  id: ID!
+  legal_entity: LegalEntity
+  transactions: [BalanceTransaction!]!
+  verification: AccountVerification!
+}
+
+type AccountVerification {
+  disabled_reason: String
+  due_by: Int
+  fields_needed: [String]
+}
+
 type AccountVerificationFields {
   company: VerificationFields!
   individual: VerificationFields!
@@ -108,23 +125,6 @@ type Charge {
   object: String!
 }
 
-type ConnectedAccount {
-  balance: Balance!
-  bankAccounts: [BankAccount!]!
-  cards: [Card!]!
-  country: String!
-  id: ID!
-  legal_entity: LegalEntity
-  transactions: [BalanceTransaction!]!
-  verification: ConnectedAccountVerification!
-}
-
-type ConnectedAccountVerification {
-  disabled_reason: String
-  due_by: Int
-  fields_needed: [String]
-}
-
 enum COUNTRY {
   US
 }
@@ -182,18 +182,13 @@ type LegalEntity {
   type: LEGAL_ENTITY_TYPE
 }
 
-type Platform {
-  balance: Balance!
-  transactions: [BalanceTransaction!]!
-}
-
 type Query {
-  connectedAccount(id: ID!): ConnectedAccount
-  connectedAccounts: [ConnectedAccount!]!
+  account(id: ID!): Account
+  accounts: [Account!]!
   countrySpecs(country: String!): CountrySpec
   customer(id: ID!): Customer
   customers: [Customer!]!
-  platform: Platform!
+  platform: Account!
 }
 
 type VerificationFields {

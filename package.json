@@ -10,6 +10,7 @@
     "dev": "nodemon -r dotenv/config src/server.js"
   },
   "dependencies": {
+    "glob": "^7.1.3",
     "graphql": "^14.0.2",
     "graphql-binding": "^2.3.5",
     "nexus": "^0.11.5",
