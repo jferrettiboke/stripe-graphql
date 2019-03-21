@@ -182,13 +182,31 @@ type LegalEntity {
   type: LEGAL_ENTITY_TYPE
 }
 
+type Plan {
+  amount: Int!
+  currency: String!
+  id: ID!
+  product: String!
+  productConnection: Product!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  type: String!
+}
+
 type Query {
   account(id: ID!): Account
   accounts: [Account!]!
   countrySpecs(country: String!): CountrySpec
   customer(id: ID!): Customer
   customers: [Customer!]!
+  plan(id: ID!): Plan
+  plans: [Plan!]!
   platform: Account!
+  product(id: ID!): Product
+  products: [Product!]!
 }
 
 type VerificationFields {
