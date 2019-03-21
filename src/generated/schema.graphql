@@ -193,6 +193,7 @@ type Plan {
 type Product {
   id: ID!
   name: String!
+  plans: [Plan!]!
   type: String!
 }
 

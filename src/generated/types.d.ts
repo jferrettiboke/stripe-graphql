@@ -339,6 +339,7 @@ export interface NexusGenFieldTypes {
   Product: { // field return type
     id: string; // ID!
     name: string; // String!
+    plans: NexusGenRootTypes['Plan'][]; // [Plan!]!
     type: string; // String!
   }
   Query: { // field return type
