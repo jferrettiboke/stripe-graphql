@@ -1,6 +1,6 @@
 const { GraphQLServer } = require("graphql-yoga");
 const { Stripe } = require("stripe");
-const { schema } = require("./schema");
+const schema = require("./schema");
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 

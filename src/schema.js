@@ -18,4 +18,4 @@ const schema = makeSchema({
   }
 });
 
-module.exports = { schema };
+module.exports = schema;

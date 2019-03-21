@@ -1,10 +1,4 @@
-const { Binding } = require("graphql-binding");
 const { schema } = require("./schema");
+const { Binding } = require("./generated/binding");
 
-class StripeServiceBinding extends Binding {
-  constructor() {
-    super({ schema });
-  }
-}
-
-module.exports = { schema, StripeServiceBinding };
+module.exports = { schema, Binding };
