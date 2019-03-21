@@ -15,6 +15,16 @@ const schema = makeSchema({
   outputs: {
     schema: path.join(__dirname, "./generated/schema.graphql"),
     typegen: path.join(__dirname, "./generated/types.d.ts")
+  },
+  typegenAutoConfig: {
+    debug: true,
+    contextType: "t.Context",
+    sources: [
+      {
+        alias: "t",
+        source: path.join(__dirname, "typeDefs.ts")
+      }
+    ]
   }
 });
 
