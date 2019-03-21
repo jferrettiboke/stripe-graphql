@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const VerificationFields = objectType({
+export const VerificationFields = objectType({
   name: "VerificationFields",
   definition(t) {
     t.string("minimum", {
@@ -13,5 +13,3 @@ const VerificationFields = objectType({
     });
   }
 });
-
-module.exports = { VerificationFields };

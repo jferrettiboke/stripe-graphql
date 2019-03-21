@@ -1,10 +1,10 @@
-const path = require("path");
-const glob = require("glob");
-const { makeSchema } = require("nexus");
+import * as path from "path";
+import * as glob from "glob";
+import { makeSchema } from "nexus";
 
 let types = {};
 
-const files = glob.sync("./src/graphql/**/*.js", {});
+const files = glob.sync("./src/graphql/**/*.ts", {});
 files.forEach(file => {
   const module = require(path.resolve(file));
   types = { ...types, ...module };
@@ -18,4 +18,4 @@ const schema = makeSchema({
   }
 });
 
-module.exports = schema;
+export default schema;

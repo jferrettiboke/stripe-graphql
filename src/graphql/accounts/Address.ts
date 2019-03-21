@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const Address = objectType({
+export const Address = objectType({
   name: "Address",
   definition(t) {
     t.string("city", { nullable: true });
@@ -11,5 +11,3 @@ const Address = objectType({
     t.string("state", { nullable: true });
   }
 });
-
-module.exports = { Address };

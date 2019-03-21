@@ -7,8 +7,8 @@
   "author": "Jesús Ferretti <jferrettiboke@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node -r dotenv/config src/server.js",
-    "gen": "graphql-binding --language typescript --input ./src/schema.js --outputBinding ./src/generated/binding.ts"
+    "dev": "ts-node -r dotenv/config src/server.ts",
+    "gen": "graphql-binding --language typescript --input ./src/schema.ts --outputBinding ./src/generated/binding.ts"
   },
   "dependencies": {
     "glob": "^7.1.3",

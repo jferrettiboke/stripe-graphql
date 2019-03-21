@@ -1,6 +1,6 @@
-const { extendType, idArg } = require("nexus");
+import { extendType, idArg } from "nexus";
 
-const AccountQueries = extendType({
+export const AccountQueries = extendType({
   type: "Query",
   definition(t) {
     t.field("platform", {
@@ -30,5 +30,3 @@ const AccountQueries = extendType({
     });
   }
 });
-
-module.exports = { AccountQueries };

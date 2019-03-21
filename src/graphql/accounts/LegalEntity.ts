@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const LegalEntity = objectType({
+export const LegalEntity = objectType({
   name: "LegalEntity",
   definition(t) {
     t.field("type", {
@@ -26,5 +26,3 @@ const LegalEntity = objectType({
     t.boolean("personal_id_number_provided", { nullable: true });
   }
 });
-
-module.exports = { LegalEntity };

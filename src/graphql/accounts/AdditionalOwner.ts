@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const AdditionalOwner = objectType({
+export const AdditionalOwner = objectType({
   name: "AdditionalOwner",
   definition(t) {
     t.field("address", {
@@ -17,5 +17,3 @@ const AdditionalOwner = objectType({
     t.boolean("personal_id_number_provided");
   }
 });
-
-module.exports = { AdditionalOwner };

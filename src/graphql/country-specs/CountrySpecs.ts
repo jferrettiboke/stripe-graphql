@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const CountrySpec = objectType({
+export const CountrySpec = objectType({
   name: "CountrySpec",
   definition(t) {
     t.string("id", { nullable: true });
@@ -9,5 +9,3 @@ const CountrySpec = objectType({
     t.field("verification_fields", { type: "AccountVerificationFields" });
   }
 });
-
-module.exports = { CountrySpec };

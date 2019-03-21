@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const Account = objectType({
+export const Account = objectType({
   name: "Account",
   definition(t) {
     t.id("id");
@@ -51,5 +51,3 @@ const Account = objectType({
     });
   }
 });
-
-module.exports = { Account };

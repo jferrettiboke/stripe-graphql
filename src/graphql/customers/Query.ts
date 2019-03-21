@@ -1,6 +1,6 @@
-const { extendType, idArg } = require("nexus");
+import { extendType, idArg } from "nexus";
 
-const CustomerQueries = extendType({
+export const CustomerQueries = extendType({
   type: "Query",
   definition(t) {
     t.list.field("customers", {
@@ -23,5 +23,3 @@ const CustomerQueries = extendType({
     });
   }
 });
-
-module.exports = { CustomerQueries };

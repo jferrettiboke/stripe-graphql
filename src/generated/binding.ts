@@ -1,7 +1,7 @@
 import { makeBindingClass, Options } from 'graphql-binding'
 import { GraphQLResolveInfo, GraphQLSchema } from 'graphql'
 import { IResolvers } from 'graphql-tools/dist/Interfaces'
-import * as schema from  '../schema'
+import schema from  '../schema'
 
 export interface Query {
     platform: <T = Account>(args?: {}, info?: GraphQLResolveInfo | string, options?: Options) => Promise<T> ,

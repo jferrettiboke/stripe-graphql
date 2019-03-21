@@ -1,4 +1,4 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
 const Query = objectType({
   name: "Query",

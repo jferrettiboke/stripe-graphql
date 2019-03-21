@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const AccountVerification = objectType({
+export const AccountVerification = objectType({
   name: "AccountVerification",
   definition(t) {
     t.string("disabled_reason", { nullable: true });
@@ -11,5 +11,3 @@ const AccountVerification = objectType({
     });
   }
 });
-
-module.exports = { AccountVerification };

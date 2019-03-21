@@ -1,6 +1,6 @@
-const { extendType, stringArg } = require("nexus");
+import { extendType, stringArg } from "nexus";
 
-const CountrySpecsQueries = extendType({
+export const CountrySpecsQueries = extendType({
   type: "Query",
   definition(t) {
     t.field("countrySpecs", {
@@ -15,5 +15,3 @@ const CountrySpecsQueries = extendType({
     });
   }
 });
-
-module.exports = { CountrySpecsQueries };

@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const Balance = objectType({
+export const Balance = objectType({
   name: "Balance",
   definition(t) {
     t.string("object");
@@ -9,5 +9,3 @@ const Balance = objectType({
     t.list.field("pending", { type: "BalanceItem" });
   }
 });
-
-module.exports = { Balance };

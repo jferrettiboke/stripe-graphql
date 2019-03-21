@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const Card = objectType({
+export const Card = objectType({
   name: "Card",
   definition(t) {
     t.id("id");
@@ -27,5 +27,3 @@ const Card = objectType({
     t.string("tokenization_method", { nullable: true });
   }
 });
-
-module.exports = { Card };

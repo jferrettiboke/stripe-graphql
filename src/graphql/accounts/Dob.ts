@@ -1,6 +1,6 @@
-const { objectType } = require("nexus");
+import { objectType } from "nexus";
 
-const Dob = objectType({
+export const Dob = objectType({
   name: "Dob",
   definition(t) {
     t.int("day", { nullable: true });
@@ -8,5 +8,3 @@ const Dob = objectType({
     t.int("year", { nullable: true });
   }
 });
-
-module.exports = { Dob };
