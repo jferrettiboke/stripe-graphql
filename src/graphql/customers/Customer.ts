@@ -7,6 +7,7 @@ export const Customer = objectType({
     t.string("email", { nullable: true });
     t.list.field("cards", {
       type: "Card",
+      // @ts-ignore
       async resolve({ id }, args, context) {
         const { data } = await context.stripe.customers.listCards(id);
         return data;
@@ -23,6 +24,7 @@ export const Customer = objectType({
     });
     t.list.field("charges", {
       type: "Charge",
+      // @ts-ignore
       async resolve({ id }, args, context) {
         const { data } = await context.stripe.charges.list({ customer: id });
         return data;

@@ -7,6 +7,7 @@ export const Account = objectType({
     t.string("country");
     t.list.field("cards", {
       type: "Card",
+      // @ts-ignore
       async resolve({ id }, args, context) {
         const { data } = await context.stripe.accounts.listExternalAccounts(
           id,
@@ -42,6 +43,7 @@ export const Account = objectType({
     });
     t.list.field("transactions", {
       type: "BalanceTransaction",
+      // @ts-ignore
       async resolve({ id }, args, context, info) {
         const { data } = await context.stripe.balance.listTransactions({
           stripe_account: id

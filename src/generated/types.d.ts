@@ -128,10 +128,7 @@ export interface NexusGenRootTypes {
     object?: string | null; // String
     verification_fields: NexusGenRootTypes['AccountVerificationFields']; // AccountVerificationFields!
   }
-  Customer: { // root type
-    email?: string | null; // String
-    id: string; // ID!
-  }
+  Customer: t.Customer;
   Dob: { // root type
     day?: number | null; // Int
     month?: number | null; // Int
