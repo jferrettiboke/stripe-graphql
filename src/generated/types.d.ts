@@ -228,10 +228,9 @@ export interface NexusGenFieldTypes {
   }
   Charge: { // field return type
     amount: number | null; // Int
-    balance_transaction: string | null; // String
     currency: string | null; // String
     id: string; // String!
-    object: string; // String!
+    status: string; // String!
   }
   CountrySpec: { // field return type
     default_currency: string | null; // String
@@ -298,6 +297,8 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     account: NexusGenRootTypes['Account'] | null; // Account
     accounts: NexusGenRootTypes['Account'][]; // [Account!]!
+    charge: NexusGenRootTypes['Charge'] | null; // Charge
+    charges: NexusGenRootTypes['Charge'][]; // [Charge!]!
     countrySpecs: NexusGenRootTypes['CountrySpec'] | null; // CountrySpec
     customer: NexusGenRootTypes['Customer'] | null; // Customer
     customers: NexusGenRootTypes['Customer'][]; // [Customer!]!
@@ -319,6 +320,9 @@ export interface NexusGenFieldTypes {
 export interface NexusGenArgTypes {
   Query: {
     account: { // args
+      id: string; // ID!
+    }
+    charge: { // args
       id: string; // ID!
     }
     countrySpecs: { // args

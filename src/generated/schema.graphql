@@ -119,10 +119,9 @@ enum CARD_FUNDING_TYPE {
 
 type Charge {
   amount: Int
-  balance_transaction: String
   currency: String
   id: String!
-  object: String!
+  status: String!
 }
 
 enum COUNTRY {
@@ -214,6 +213,8 @@ type Product {
 type Query {
   account(id: ID!): Account
   accounts: [Account!]!
+  charge(id: ID!): Charge
+  charges: [Charge!]!
   countrySpecs(country: String!): CountrySpec
   customer(id: ID!): Customer
   customers: [Customer!]!
