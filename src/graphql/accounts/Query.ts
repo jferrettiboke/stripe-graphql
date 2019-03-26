@@ -5,7 +5,6 @@ export const AccountQueries = extendType({
   definition(t) {
     t.field("platform", {
       type: "Account",
-      // @ts-ignore
       async resolve(root, args, context, info) {
         return await context.stripe.accounts.retrieve();
       }
@@ -13,7 +12,6 @@ export const AccountQueries = extendType({
 
     t.list.field("accounts", {
       type: "Account",
-      // @ts-ignore
       async resolve(root, args, context, info) {
         const { data } = await context.stripe.accounts.list();
         return data;
@@ -26,7 +24,6 @@ export const AccountQueries = extendType({
       args: {
         id: idArg({ required: true })
       },
-      // @ts-ignore
       async resolve(root, { id }, context, info) {
         return await context.stripe.accounts.retrieve(id);
       }

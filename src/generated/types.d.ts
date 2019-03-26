@@ -21,12 +21,7 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
-  Account: { // root type
-    country: string; // String!
-    id: string; // ID!
-    legal_entity?: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
-    verification: NexusGenRootTypes['AccountVerification']; // AccountVerification!
-  }
+  Account: t.Account;
   AccountVerification: { // root type
     disabled_reason?: string | null; // String
     due_by?: number | null; // Int
@@ -62,22 +57,7 @@ export interface NexusGenRootTypes {
     amount: number; // Int!
     currency: string; // String!
   }
-  BalanceTransaction: { // root type
-    amount?: number | null; // Int
-    available_on?: number | null; // Int
-    created?: number | null; // Int
-    currency?: string | null; // String
-    description?: string | null; // String
-    exchange_rate?: number | null; // Float
-    fee?: number | null; // Int
-    fee_details: NexusGenRootTypes['FeeDetails'][]; // [FeeDetails!]!
-    id: string; // String!
-    net?: number | null; // Int
-    object: string; // String!
-    source?: string | null; // String
-    status?: string | null; // String
-    type?: string | null; // String
-  }
+  BalanceTransaction: t.BalanceTransaction;
   BankAccount: { // root type
     account_holder_name?: string | null; // String
     account_holder_type?: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
@@ -91,37 +71,8 @@ export interface NexusGenRootTypes {
     routing_number?: string | null; // String
     status?: string | null; // String
   }
-  Card: { // root type
-    address_city?: string | null; // String
-    address_country?: string | null; // String
-    address_line1?: string | null; // String
-    address_line1_check?: string | null; // String
-    address_line2?: string | null; // String
-    address_state?: string | null; // String
-    address_zip?: string | null; // String
-    address_zip_check?: string | null; // String
-    brand?: string | null; // String
-    country?: string | null; // String
-    customer?: string | null; // String
-    cvc_check?: string | null; // String
-    default_for_currency?: boolean | null; // Boolean
-    dynamic_last4?: string | null; // String
-    exp_month?: number | null; // Int
-    exp_year?: number | null; // Int
-    fingerprint?: string | null; // String
-    funding: NexusGenEnums['CARD_FUNDING_TYPE']; // CARD_FUNDING_TYPE!
-    id: string; // ID!
-    last4?: string | null; // String
-    name?: string | null; // String
-    tokenization_method?: string | null; // String
-  }
-  Charge: { // root type
-    amount?: number | null; // Int
-    balance_transaction?: string | null; // String
-    currency?: string | null; // String
-    id: string; // String!
-    object: string; // String!
-  }
+  Card: t.Card;
+  Charge: t.Charge;
   CountrySpec: { // root type
     default_currency?: string | null; // String
     id?: string | null; // String
@@ -142,17 +93,8 @@ export interface NexusGenRootTypes {
     id?: string | null; // String
     type?: string | null; // String
   }
-  Invoice: { // root type
-    amount_due: number; // Int!
-    amount_paid: number; // Int!
-    id?: string | null; // ID
-  }
-  InvoiceLineItem: { // root type
-    amount: number; // Int!
-    currency: string; // String!
-    id: string; // ID!
-    quantity: number; // Int!
-  }
+  Invoice: t.Invoice;
+  InvoiceLineItem: t.InvoiceLineItem;
   LegalEntity: { // root type
     additional_owners: NexusGenRootTypes['AdditionalOwner'][]; // [AdditionalOwner!]!
     address?: NexusGenRootTypes['Address'] | null; // Address
@@ -164,17 +106,8 @@ export interface NexusGenRootTypes {
     personal_id_number_provided?: boolean | null; // Boolean
     type?: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
   }
-  Plan: { // root type
-    amount: number; // Int!
-    currency: string; // String!
-    id: string; // ID!
-    product: string; // String!
-  }
-  Product: { // root type
-    id: string; // ID!
-    name: string; // String!
-    type: string; // String!
-  }
+  Plan: t.Plan;
+  Product: t.Product;
   Query: {};
   VerificationFields: { // root type
     additional?: Array<string | null> | null; // [String]
@@ -353,8 +286,7 @@ export interface NexusGenFieldTypes {
     amount: number; // Int!
     currency: string; // String!
     id: string; // ID!
-    product: string; // String!
-    productConnection: NexusGenRootTypes['Product']; // Product!
+    product: NexusGenRootTypes['Product']; // Product!
   }
   Product: { // field return type
     id: string; // ID!

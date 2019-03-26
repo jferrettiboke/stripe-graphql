@@ -5,9 +5,9 @@ export const Account = objectType({
   definition(t) {
     t.id("id");
     t.string("country");
+
     t.list.field("cards", {
       type: "Card",
-      // @ts-ignore
       async resolve({ id }, args, context) {
         const { data } = await context.stripe.accounts.listExternalAccounts(
           id,
@@ -18,6 +18,7 @@ export const Account = objectType({
         return data;
       }
     });
+
     t.list.field("bankAccounts", {
       type: "BankAccount",
       async resolve({ id }, args, context) {
@@ -30,20 +31,25 @@ export const Account = objectType({
         return data;
       }
     });
+
     t.field("legal_entity", {
       type: "LegalEntity",
       nullable: true
     });
-    t.field("verification", { type: "AccountVerification" });
+
+    t.field("verification", {
+      type: "AccountVerification"
+    });
+
     t.field("balance", {
       type: "Balance",
       async resolve({ id }, args, context, info) {
         return await context.stripe.balance.retrieve({ stripe_account: id });
       }
     });
+
     t.list.field("transactions", {
       type: "BalanceTransaction",
-      // @ts-ignore
       async resolve({ id }, args, context, info) {
         const { data } = await context.stripe.balance.listTransactions({
           stripe_account: id

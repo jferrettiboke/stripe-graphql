@@ -7,10 +7,10 @@ export const Plan = objectType({
     t.int("amount");
     t.string("currency");
 
-    t.string("product");
-    t.field("productConnection", {
+    t.field("product", {
       type: "Product",
       async resolve(plan, args, context) {
+        // @ts-ignore
         return await context.stripe.products.retrieve(plan.product);
       }
     });

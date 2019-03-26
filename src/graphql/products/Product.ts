@@ -9,7 +9,6 @@ export const Product = objectType({
 
     t.list.field("plans", {
       type: "Plan",
-      // @ts-ignore
       async resolve(product, args, context, info) {
         const { data } = await context.stripe.plans.list({
           product: product.id

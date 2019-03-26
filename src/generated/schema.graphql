@@ -200,8 +200,7 @@ type Plan {
   amount: Int!
   currency: String!
   id: ID!
-  product: String!
-  productConnection: Product!
+  product: Product!
 }
 
 type Product {

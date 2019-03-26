@@ -8,11 +8,9 @@ export const Invoice = objectType({
     t.int("amount_due");
     t.int("amount_paid");
 
-    t.list.string("lines", {
-      // @ts-ignore
+    t.list.field("lines", {
       type: "InvoiceLineItem",
       resolve(invoice, args, context) {
-        // @ts-ignore
         const { data } = invoice.lines;
         return data;
       }
