@@ -1,3 +1,5 @@
+![Preview](./preview.png)
+
 # stripe-graphql
 
 [![npm](https://img.shields.io/npm/v/stripe-graphql.svg)]()
