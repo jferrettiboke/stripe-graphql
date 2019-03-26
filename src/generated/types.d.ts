@@ -285,6 +285,7 @@ export interface NexusGenFieldTypes {
   Plan: { // field return type
     amount: number; // Int!
     currency: string; // String!
+    formattedAmount: string; // String!
     id: string; // ID!
     product: NexusGenRootTypes['Product']; // Product!
   }

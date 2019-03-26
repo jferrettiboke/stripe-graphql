@@ -199,6 +199,7 @@ type LegalEntity {
 type Plan {
   amount: Int!
   currency: String!
+  formattedAmount: String!
   id: ID!
   product: Product!
 }
