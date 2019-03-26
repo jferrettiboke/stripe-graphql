@@ -48,7 +48,7 @@ export const Account = objectType({
       }
     });
 
-    t.list.field("transactions", {
+    t.list.field("balanceTransactions", {
       type: "BalanceTransaction",
       async resolve({ id }, args, context, info) {
         const { data } = await context.stripe.balance.listTransactions({

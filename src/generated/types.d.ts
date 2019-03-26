@@ -130,12 +130,12 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 export interface NexusGenFieldTypes {
   Account: { // field return type
     balance: NexusGenRootTypes['Balance']; // Balance!
+    balanceTransactions: NexusGenRootTypes['BalanceTransaction'][]; // [BalanceTransaction!]!
     bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
     cards: NexusGenRootTypes['Card'][]; // [Card!]!
     country: string; // String!
     id: string; // ID!
     legal_entity: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
-    transactions: NexusGenRootTypes['BalanceTransaction'][]; // [BalanceTransaction!]!
     verification: NexusGenRootTypes['AccountVerification']; // AccountVerification!
   }
   AccountVerification: { // field return type

@@ -4,12 +4,12 @@
 
 type Account {
   balance: Balance!
+  balanceTransactions: [BalanceTransaction!]!
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
   country: String!
   id: ID!
   legal_entity: LegalEntity
-  transactions: [BalanceTransaction!]!
   verification: AccountVerification!
 }
 
