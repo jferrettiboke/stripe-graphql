@@ -1,6 +1,10 @@
-import { Binding } from "../../src/generated/binding";
+import * as _Stripe from "stripe";
+import { Stripe } from "../../src/";
 
-const stripe = new Binding();
+const { STRIPE_SECRET_KEY } = process.env;
+const _stripe = new _Stripe(STRIPE_SECRET_KEY || "");
+
+const stripe = Stripe();
 
 async function main() {
   const result = await stripe.query.platform(
@@ -18,7 +22,8 @@ async function main() {
           }
         }
       }
-    `
+    `,
+    { context: { stripe: _stripe } }
   );
 
   console.log(result);
