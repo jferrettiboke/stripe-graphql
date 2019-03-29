@@ -7,7 +7,7 @@ interface Currencies {
   [key: string]: Currency;
 }
 
-const currencies: Currencies = {
+export const currencies: Currencies = {
   AED: {
     name: "UAE Dirham",
     decimals: 2
