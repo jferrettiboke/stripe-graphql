@@ -7,6 +7,7 @@ import * as t from "../typeDefs"
 import { core } from "nexus"
 declare global {
   interface NexusGenCustomDefinitionMethods<TypeName extends string> {
+    currency<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Currency";
     dateTime<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DateTime";
   }
 }
@@ -66,12 +67,7 @@ export interface NexusGenRootTypes {
   BankAccount: t.BankAccount;
   Card: t.Card;
   Charge: t.Charge;
-  CountrySpec: { // root type
-    default_currency?: string | null; // String
-    id?: string | null; // String
-    object?: string | null; // String
-    verification_fields: NexusGenRootTypes['AccountVerificationFields']; // AccountVerificationFields!
-  }
+  CountrySpec: t.CountrySpec;
   Customer: t.Customer;
   Dob: { // root type
     day?: number | null; // Int
@@ -113,6 +109,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  Currency: any;
   DateTime: any;
 }
 
@@ -220,10 +217,10 @@ export interface NexusGenFieldTypes {
     status: string; // String!
   }
   CountrySpec: { // field return type
-    default_currency: string | null; // String
+    defaultCurrency: any | null; // Currency
     id: string | null; // String
     object: string | null; // String
-    verification_fields: NexusGenRootTypes['AccountVerificationFields']; // AccountVerificationFields!
+    verificationFields: NexusGenRootTypes['AccountVerificationFields']; // AccountVerificationFields!
   }
   Customer: { // field return type
     bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
@@ -372,7 +369,7 @@ export type NexusGenEnumNames = "CARD_FUNDING_TYPE" | "COUNTRY" | "CURRENCY" | "
 
 export type NexusGenInterfaceNames = "Node";
 
-export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "Currency" | "DateTime" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

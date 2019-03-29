@@ -150,11 +150,14 @@ enum COUNTRY {
 }
 
 type CountrySpec {
-  default_currency: String
+  defaultCurrency: Currency
   id: String
   object: String
-  verification_fields: AccountVerificationFields!
+  verificationFields: AccountVerificationFields!
 }
+
+"""Currency custom scalar type."""
+scalar Currency
 
 enum CURRENCY {
   AED
@@ -316,7 +319,7 @@ type Customer implements Node {
   subscriptions: [_Subscription!]!
 }
 
-"""DateTime custom scalar type"""
+"""DateTime custom scalar type."""
 scalar DateTime
 
 type Dob {

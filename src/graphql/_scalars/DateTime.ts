@@ -5,7 +5,7 @@ import { Kind } from "graphql";
 export const DateTime = scalarType({
   name: "DateTime",
   asNexusMethod: "dateTime",
-  description: "DateTime custom scalar type",
+  description: "DateTime custom scalar type.",
   parseValue: value => value, // value from the client
   serialize: value => new Date(value * 1000).toISOString(), // value sent to the client
   parseLiteral: ast =>

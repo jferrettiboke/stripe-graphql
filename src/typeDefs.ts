@@ -12,6 +12,8 @@ export interface Card extends Stripe.cards.ICard {}
 
 export interface Charge extends Stripe.charges.ICharge {}
 
+export interface CountrySpec extends Stripe.countrySpecs.ICountrySpec {}
+
 export interface Customer extends Stripe.customers.ICustomer {}
 
 // export interface Customer
