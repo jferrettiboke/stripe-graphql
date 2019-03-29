@@ -229,7 +229,7 @@ export interface NexusGenFieldTypes {
     bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
     cards: NexusGenRootTypes['Card'][]; // [Card!]!
     charges: NexusGenRootTypes['Charge'][]; // [Charge!]!
-    createdAt: string; // String!
+    createdAt: any; // DateTime!
     email: string | null; // String
     id: string; // ID!
     object: string; // String!

@@ -166,7 +166,9 @@ type Customer implements Node {
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
   charges: [Charge!]!
-  createdAt: String!
+
+  """Time at which the object was created."""
+  createdAt: DateTime!
 
   """The customer's email address."""
   email: String

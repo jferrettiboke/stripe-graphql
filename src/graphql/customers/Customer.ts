@@ -1,5 +1,4 @@
 import { objectType } from "nexus";
-import { timestampToISOString } from "../../utils/dates";
 
 export const Customer = objectType({
   name: "Customer",
@@ -9,6 +8,9 @@ export const Customer = objectType({
       description: "The customer's email address.",
       nullable: true
     });
-    t.string("createdAt", o => timestampToISOString(o.created));
+    t.dateTime("createdAt", {
+      description: "Time at which the object was created.",
+      resolve: o => o.created
+    });
   }
 });
