@@ -1,6 +1,7 @@
 import { enumType } from "nexus";
+import { currencies } from "../../utils/currencies";
 
 export const CURRENCY = enumType({
   name: "CURRENCY",
-  members: ["eur", "gbp", "usd"]
+  members: Object.keys(currencies).map(currency => currency)
 });
