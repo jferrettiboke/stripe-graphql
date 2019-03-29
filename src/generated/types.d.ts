@@ -340,6 +340,11 @@ export interface NexusGenArgTypes {
     customer: { // args
       id: string; // ID!
     }
+    customers: { // args
+      endingBefore?: string | null; // String
+      limit?: number | null; // Int
+      startingAfter?: string | null; // String
+    }
     invoice: { // args
       id: string; // ID!
     }

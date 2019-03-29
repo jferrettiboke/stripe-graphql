@@ -224,7 +224,7 @@ type Query {
   charges: [Charge!]!
   countrySpecs(country: String!): CountrySpec
   customer(id: ID!): Customer
-  customers: [Customer!]!
+  customers(endingBefore: String, limit: Int, startingAfter: String): [Customer!]!
   invoice(id: ID!): Invoice
   invoices: [Invoice!]!
   plan(id: ID!): Plan
