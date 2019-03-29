@@ -5,6 +5,7 @@ export const AccountBalance = extendType({
   definition(t) {
     t.field("balance", {
       type: "Balance",
+      // @ts-ignore
       async resolve({ id }, args, context) {
         return await context.stripe.balance.retrieve({ stripe_account: id });
       }

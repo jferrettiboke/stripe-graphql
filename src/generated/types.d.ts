@@ -62,6 +62,11 @@ export interface NexusGenRootTypes {
   BalanceItem: { // root type
     amount: number; // Int!
     currency: string; // String!
+    source_types: NexusGenRootTypes['BalanceSourceTypes']; // BalanceSourceTypes!
+  }
+  BalanceSourceTypes: { // root type
+    bank_account?: number | null; // Int
+    card?: number | null; // Int
   }
   BalanceTransaction: t.BalanceTransaction;
   BankAccount: t.BankAccount;
@@ -168,6 +173,11 @@ export interface NexusGenFieldTypes {
   BalanceItem: { // field return type
     amount: number; // Int!
     currency: string; // String!
+    source_types: NexusGenRootTypes['BalanceSourceTypes']; // BalanceSourceTypes!
+  }
+  BalanceSourceTypes: { // field return type
+    bank_account: number | null; // Int
+    card: number | null; // Int
   }
   BalanceTransaction: { // field return type
     amount: number | null; // Int
@@ -372,7 +382,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "Plan" | "Product" | "Query" | "VerificationFields" | "_Subscription";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "Plan" | "Product" | "Query" | "VerificationFields" | "_Subscription";
 
 export type NexusGenInputNames = never;
 

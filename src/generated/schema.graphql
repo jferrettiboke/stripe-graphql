@@ -67,6 +67,17 @@ type Balance {
 type BalanceItem {
   amount: Int!
   currency: String!
+
+  """Breakdown of balance by source types."""
+  source_types: BalanceSourceTypes!
+}
+
+type BalanceSourceTypes {
+  """Amount for bank account."""
+  bank_account: Int
+
+  """Amount for card."""
+  card: Int
 }
 
 type BalanceTransaction implements Node {

@@ -5,5 +5,9 @@ export const BalanceItem = objectType({
   definition(t) {
     t.string("currency");
     t.int("amount");
+    t.field("source_types", {
+      type: "BalanceSourceTypes",
+      description: "Breakdown of balance by source types."
+    });
   }
 });
