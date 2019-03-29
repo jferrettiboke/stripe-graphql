@@ -25,6 +25,8 @@ export interface Plan extends Stripe.plans.IPlan {}
 
 export interface Product extends Stripe.products.IProduct {}
 
+export interface _Subscription extends Stripe.subscriptions.ISubscription {}
+
 export interface Context {
   stripe: Stripe;
 }

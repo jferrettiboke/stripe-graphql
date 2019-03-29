@@ -2,6 +2,12 @@
 ### Do not make changes to this file directly
 
 
+type _Subscription {
+  customer: Customer!
+  id: ID!
+  object: String!
+}
+
 type Account {
   balance: Balance!
   balanceTransactions: [BalanceTransaction!]!
@@ -147,6 +153,7 @@ type Customer {
   charges: [Charge!]!
   email: String
   id: ID!
+  subscriptions: [_Subscription!]!
 }
 
 type Dob {
@@ -225,6 +232,8 @@ type Query {
   platform: Account!
   product(id: ID!): Product
   products: [Product!]!
+  subscription(id: ID!): _Subscription
+  subscriptions: [_Subscription!]!
   upcomingInvoice(customerId: ID!): Invoice
 }
 
