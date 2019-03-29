@@ -1,6 +1,6 @@
 import { extendType } from "nexus";
 
-export const BankAccountAccountFields = extendType({
+export const AccountBankAccounts = extendType({
   type: "Account",
   definition(t) {
     t.list.field("bankAccounts", {

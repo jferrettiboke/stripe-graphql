@@ -1,6 +1,6 @@
 import { extendType } from "nexus";
 
-export const CustomerSubscriptionFields = extendType({
+export const SubscriptionCustomer = extendType({
   type: "_Subscription",
   definition(t) {
     t.field("customer", {

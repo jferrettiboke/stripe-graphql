@@ -10,13 +10,5 @@ export const Plan = objectType({
     t.string("formattedAmount", o =>
       formatCurrency({ amount: o.amount, currency: o.currency })
     );
-
-    t.field("product", {
-      type: "Product",
-      async resolve(plan, args, context) {
-        // @ts-ignore
-        return await context.stripe.products.retrieve(plan.product);
-      }
-    });
   }
 });
