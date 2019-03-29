@@ -3,7 +3,7 @@ import { objectType } from "nexus";
 export const BankAccount = objectType({
   name: "BankAccount",
   definition(t) {
-    t.id("id");
+    t.implements("Node");
     t.string("account_holder_name", { nullable: true });
     t.field("account_holder_type", {
       type: "LEGAL_ENTITY_TYPE",

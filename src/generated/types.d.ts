@@ -66,7 +66,6 @@ export interface NexusGenRootTypes {
     currency?: string | null; // String
     customer?: string | null; // String
     fingerprint?: string | null; // String
-    id: string; // ID!
     last4?: string | null; // String
     routing_number?: string | null; // String
     status?: string | null; // String
@@ -114,6 +113,7 @@ export interface NexusGenRootTypes {
     minimum?: Array<string | null> | null; // [String]
   }
   _Subscription: t._Subscription;
+  Node: NexusGenRootTypes['Account'] | NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['_Subscription'] | NexusGenRootTypes['InvoiceLineItem'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Product'];
   String: string;
   Int: number;
   Float: number;
@@ -137,6 +137,7 @@ export interface NexusGenFieldTypes {
     country: string; // String!
     id: string; // ID!
     legal_entity: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
+    object: string; // String!
     verification: NexusGenRootTypes['AccountVerification']; // AccountVerification!
   }
   AccountVerification: { // field return type
@@ -183,7 +184,7 @@ export interface NexusGenFieldTypes {
     exchange_rate: number | null; // Float
     fee: number | null; // Int
     fee_details: NexusGenRootTypes['FeeDetails'][]; // [FeeDetails!]!
-    id: string; // String!
+    id: string; // ID!
     net: number | null; // Int
     object: string; // String!
     source: string | null; // String
@@ -200,37 +201,27 @@ export interface NexusGenFieldTypes {
     fingerprint: string | null; // String
     id: string; // ID!
     last4: string | null; // String
+    object: string; // String!
     routing_number: string | null; // String
     status: string | null; // String
   }
   Card: { // field return type
-    address_city: string | null; // String
-    address_country: string | null; // String
-    address_line1: string | null; // String
-    address_line1_check: string | null; // String
-    address_line2: string | null; // String
-    address_state: string | null; // String
-    address_zip: string | null; // String
-    address_zip_check: string | null; // String
     brand: string | null; // String
     country: string | null; // String
-    customer: string | null; // String
-    cvc_check: string | null; // String
     default_for_currency: boolean | null; // Boolean
-    dynamic_last4: string | null; // String
     exp_month: number | null; // Int
     exp_year: number | null; // Int
-    fingerprint: string | null; // String
     funding: NexusGenEnums['CARD_FUNDING_TYPE']; // CARD_FUNDING_TYPE!
     id: string; // ID!
     last4: string | null; // String
     name: string | null; // String
-    tokenization_method: string | null; // String
+    object: string; // String!
   }
   Charge: { // field return type
     amount: number | null; // Int
     currency: string | null; // String
-    id: string; // String!
+    id: string; // ID!
+    object: string; // String!
     status: string; // String!
   }
   CountrySpec: { // field return type
@@ -243,8 +234,10 @@ export interface NexusGenFieldTypes {
     bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
     cards: NexusGenRootTypes['Card'][]; // [Card!]!
     charges: NexusGenRootTypes['Charge'][]; // [Charge!]!
+    createdAt: string; // String!
     email: string | null; // String
     id: string; // ID!
+    object: string; // String!
     subscriptions: NexusGenRootTypes['_Subscription'][]; // [_Subscription!]!
   }
   Dob: { // field return type
@@ -270,6 +263,7 @@ export interface NexusGenFieldTypes {
     amount: number; // Int!
     currency: string; // String!
     id: string; // ID!
+    object: string; // String!
     quantity: number; // Int!
   }
   LegalEntity: { // field return type
@@ -288,11 +282,13 @@ export interface NexusGenFieldTypes {
     currency: string; // String!
     formattedAmount: string; // String!
     id: string; // ID!
+    object: string; // String!
     product: NexusGenRootTypes['Product']; // Product!
   }
   Product: { // field return type
     id: string; // ID!
     name: string; // String!
+    object: string; // String!
     plans: NexusGenRootTypes['Plan'][]; // [Plan!]!
     type: string; // String!
   }
@@ -321,6 +317,10 @@ export interface NexusGenFieldTypes {
   }
   _Subscription: { // field return type
     customer: NexusGenRootTypes['Customer']; // Customer!
+    id: string; // ID!
+    object: string; // String!
+  }
+  Node: { // field return type
     id: string; // ID!
     object: string; // String!
   }
@@ -364,6 +364,7 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
+  Node: "Account" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "_Subscription" | "InvoiceLineItem" | "Plan" | "Product"
 }
 
 export interface NexusGenInheritedFields {}
@@ -374,7 +375,7 @@ export type NexusGenInputNames = never;
 
 export type NexusGenEnumNames = "CARD_FUNDING_TYPE" | "COUNTRY" | "CURRENCY" | "LEGAL_ENTITY_TYPE";
 
-export type NexusGenInterfaceNames = never;
+export type NexusGenInterfaceNames = "Node";
 
 export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
 

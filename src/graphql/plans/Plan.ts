@@ -4,7 +4,7 @@ import { formatCurrency } from "../../utils/currencies";
 export const Plan = objectType({
   name: "Plan",
   definition(t) {
-    t.id("id");
+    t.implements("Node");
     t.int("amount");
     t.string("currency");
     t.string("formattedAmount", o =>

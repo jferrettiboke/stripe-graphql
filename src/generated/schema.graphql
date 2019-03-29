@@ -2,20 +2,29 @@
 ### Do not make changes to this file directly
 
 
-type _Subscription {
+type _Subscription implements Node {
   customer: Customer!
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """String representing the object's type."""
   object: String!
 }
 
-type Account {
+type Account implements Node {
   balance: Balance!
   balanceTransactions: [BalanceTransaction!]!
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
   country: String!
+
+  """Unique identifier for the object."""
   id: ID!
   legal_entity: LegalEntity
+
+  """String representing the object's type."""
+  object: String!
   verification: AccountVerification!
 }
 
@@ -60,7 +69,7 @@ type BalanceItem {
   currency: String!
 }
 
-type BalanceTransaction {
+type BalanceTransaction implements Node {
   amount: Int
   available_on: Int
   created: Int
@@ -69,15 +78,19 @@ type BalanceTransaction {
   exchange_rate: Float
   fee: Int
   fee_details: [FeeDetails!]!
-  id: String!
+
+  """Unique identifier for the object."""
+  id: ID!
   net: Int
+
+  """String representing the object's type."""
   object: String!
   source: String
   status: String
   type: String
 }
 
-type BankAccount {
+type BankAccount implements Node {
   account_holder_name: String
   account_holder_type: LEGAL_ENTITY_TYPE
   bank_name: String
@@ -85,35 +98,32 @@ type BankAccount {
   currency: String
   customer: String
   fingerprint: String
+
+  """Unique identifier for the object."""
   id: ID!
   last4: String
+
+  """String representing the object's type."""
+  object: String!
   routing_number: String
   status: String
 }
 
-type Card {
-  address_city: String
-  address_country: String
-  address_line1: String
-  address_line1_check: String
-  address_line2: String
-  address_state: String
-  address_zip: String
-  address_zip_check: String
+type Card implements Node {
   brand: String
   country: String
-  customer: String
-  cvc_check: String
   default_for_currency: Boolean
-  dynamic_last4: String
   exp_month: Int
   exp_year: Int
-  fingerprint: String
   funding: CARD_FUNDING_TYPE!
+
+  """Unique identifier for the object."""
   id: ID!
   last4: String
   name: String
-  tokenization_method: String
+
+  """String representing the object's type."""
+  object: String!
 }
 
 enum CARD_FUNDING_TYPE {
@@ -123,10 +133,15 @@ enum CARD_FUNDING_TYPE {
   unknown
 }
 
-type Charge {
+type Charge implements Node {
   amount: Int
   currency: String
-  id: String!
+
+  """Unique identifier for the object."""
+  id: ID!
+
+  """String representing the object's type."""
+  object: String!
   status: String!
 }
 
@@ -147,12 +162,20 @@ enum CURRENCY {
   usd
 }
 
-type Customer {
+type Customer implements Node {
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
   charges: [Charge!]!
+  createdAt: String!
+
+  """The customer's email address."""
   email: String
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """String representing the object's type."""
+  object: String!
   subscriptions: [_Subscription!]!
 }
 
@@ -178,10 +201,15 @@ type Invoice {
   lines: [InvoiceLineItem!]!
 }
 
-type InvoiceLineItem {
+type InvoiceLineItem implements Node {
   amount: Int!
   currency: String!
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """String representing the object's type."""
+  object: String!
   quantity: Int!
 }
 
@@ -202,17 +230,35 @@ type LegalEntity {
   type: LEGAL_ENTITY_TYPE
 }
 
-type Plan {
+"""A Node is a resource with a globally unique identifier"""
+interface Node {
+  """Unique identifier for the object."""
+  id: ID!
+
+  """String representing the object's type."""
+  object: String!
+}
+
+type Plan implements Node {
   amount: Int!
   currency: String!
   formattedAmount: String!
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """String representing the object's type."""
+  object: String!
   product: Product!
 }
 
-type Product {
+type Product implements Node {
+  """Unique identifier for the object."""
   id: ID!
   name: String!
+
+  """String representing the object's type."""
+  object: String!
   plans: [Plan!]!
   type: String!
 }

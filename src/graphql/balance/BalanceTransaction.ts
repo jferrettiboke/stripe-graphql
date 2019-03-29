@@ -3,8 +3,7 @@ import { objectType } from "nexus";
 export const BalanceTransaction = objectType({
   name: "BalanceTransaction",
   definition(t) {
-    t.string("id");
-    t.string("object");
+    t.implements("Node");
     t.int("amount", { nullable: true });
     t.int("available_on", { nullable: true });
     t.int("created", { nullable: true });
