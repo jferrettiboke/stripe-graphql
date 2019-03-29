@@ -3,6 +3,8 @@ import * as Stripe from "stripe";
 
 export interface Account extends Stripe.accounts.IAccount {}
 
+export interface BankAccount extends Stripe.bankAccounts.IBankAccount {}
+
 export interface BalanceTransaction
   extends Stripe.balance.IBalanceTransaction {}
 

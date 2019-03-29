@@ -179,6 +179,9 @@ type Customer implements Node {
   subscriptions: [_Subscription!]!
 }
 
+"""DateTime custom scalar type"""
+scalar DateTime
+
 type Dob {
   day: Int
   month: Int

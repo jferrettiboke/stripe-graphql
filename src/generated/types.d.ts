@@ -4,7 +4,12 @@
  */
 
 import * as t from "../typeDefs"
-
+import { core } from "nexus"
+declare global {
+  interface NexusGenCustomDefinitionMethods<TypeName extends string> {
+    dateTime<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "DateTime";
+  }
+}
 
 declare global {
   interface NexusGen extends NexusGenTypes {}
@@ -58,18 +63,7 @@ export interface NexusGenRootTypes {
     currency: string; // String!
   }
   BalanceTransaction: t.BalanceTransaction;
-  BankAccount: { // root type
-    account_holder_name?: string | null; // String
-    account_holder_type?: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
-    bank_name?: string | null; // String
-    country?: string | null; // String
-    currency?: string | null; // String
-    customer?: string | null; // String
-    fingerprint?: string | null; // String
-    last4?: string | null; // String
-    routing_number?: string | null; // String
-    status?: string | null; // String
-  }
+  BankAccount: t.BankAccount;
   Card: t.Card;
   Charge: t.Charge;
   CountrySpec: { // root type
@@ -119,6 +113,7 @@ export interface NexusGenRootTypes {
   Float: number;
   Boolean: boolean;
   ID: string;
+  DateTime: any;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -377,7 +372,7 @@ export type NexusGenEnumNames = "CARD_FUNDING_TYPE" | "COUNTRY" | "CURRENCY" | "
 
 export type NexusGenInterfaceNames = "Node";
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "DateTime" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 
