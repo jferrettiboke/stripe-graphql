@@ -95,6 +95,7 @@ export interface NexusGenRootTypes {
     personal_id_number_provided?: boolean | null; // Boolean
     type?: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
   }
+  MetadataType: t.MetadataType;
   Plan: t.Plan;
   Product: t.Product;
   Query: {};
@@ -103,6 +104,7 @@ export interface NexusGenRootTypes {
     minimum?: Array<string | null> | null; // [String]
   }
   _Subscription: t._Subscription;
+  Metadata: t.Metadata;
   Node: NexusGenRootTypes['Account'] | NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['_Subscription'] | NexusGenRootTypes['InvoiceLineItem'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Product'];
   String: string;
   Int: number;
@@ -229,6 +231,7 @@ export interface NexusGenFieldTypes {
     createdAt: any; // DateTime!
     email: string | null; // String
     id: string; // ID!
+    metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
     object: string; // String!
     subscriptions: NexusGenRootTypes['_Subscription'][]; // [_Subscription!]!
   }
@@ -268,6 +271,10 @@ export interface NexusGenFieldTypes {
     personal_address: NexusGenRootTypes['Address'] | null; // Address
     personal_id_number_provided: boolean | null; // Boolean
     type: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
+  }
+  MetadataType: { // field return type
+    key: string; // String!
+    value: string; // String!
   }
   Plan: { // field return type
     amount: number; // Int!
@@ -311,6 +318,9 @@ export interface NexusGenFieldTypes {
     customer: NexusGenRootTypes['Customer']; // Customer!
     id: string; // ID!
     object: string; // String!
+  }
+  Metadata: { // field return type
+    metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
   }
   Node: { // field return type
     id: string; // ID!
@@ -356,18 +366,19 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
+  Metadata: "Customer"
   Node: "Account" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "_Subscription" | "InvoiceLineItem" | "Plan" | "Product"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "Plan" | "Product" | "Query" | "VerificationFields" | "_Subscription";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "Plan" | "Product" | "Query" | "VerificationFields" | "_Subscription";
 
 export type NexusGenInputNames = never;
 
 export type NexusGenEnumNames = "CARD_FUNDING_TYPE" | "COUNTRY" | "CURRENCY" | "LEGAL_ENTITY_TYPE";
 
-export type NexusGenInterfaceNames = "Node";
+export type NexusGenInterfaceNames = "Metadata" | "Node";
 
 export type NexusGenScalarNames = "Boolean" | "Currency" | "DateTime" | "Float" | "ID" | "Int" | "String";
 

@@ -3,7 +3,7 @@ import { objectType } from "nexus";
 export const Customer = objectType({
   name: "Customer",
   definition(t) {
-    t.implements("Node");
+    t.implements("Node", "Metadata");
     t.string("email", {
       description: "The customer's email address.",
       nullable: true

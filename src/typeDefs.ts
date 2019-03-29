@@ -25,6 +25,16 @@ export interface Invoice extends Stripe.invoices.IInvoice {}
 
 export interface InvoiceLineItem extends Stripe.invoices.IInvoiceLineItem {}
 
+interface MetadataField extends Stripe.IMetadata {}
+export interface Metadata {
+  metadata: MetadataField;
+}
+
+export interface MetadataType {
+  key: string;
+  value: string;
+}
+
 export interface Plan extends Stripe.plans.IPlan {}
 
 export interface Product extends Stripe.products.IProduct {}
