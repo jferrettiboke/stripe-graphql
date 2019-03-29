@@ -16,11 +16,17 @@ export const CustomerQueries = extendType({
         context,
         info
       ) {
-        const { data } = await context.stripe.customers.list({
-          ending_before: endingBefore,
-          starting_after: startingAfter,
-          limit
-        });
+        let options = {};
+        if (startingAfter) {
+          options = { ...options, starting_after: startingAfter };
+        }
+        if (endingBefore) {
+          options = { ...options, ending_before: endingBefore };
+        }
+        if (limit) {
+          options = { ...options, limit };
+        }
+        const { data } = await context.stripe.customers.list(options);
         return data;
       }
     });
