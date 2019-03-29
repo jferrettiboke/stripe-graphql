@@ -1,13 +1,8 @@
-import { queryType } from "yoga";
+import { stripeObjectType } from "stripe-graphql";
 
-export const Query = queryType({
-  definition(t) {
-    t.list.field("customers", {
-      type: "Customer",
-      resolve: (root, args, context) => {
-        // TODO
-        return [];
-      }
-    });
-  }
+// Use stripeObjectType for "customers"
+export const Query = stripeObjectType({
+  name: "Query",
+  fields: ["*"],
+  definition(t) {}
 });
