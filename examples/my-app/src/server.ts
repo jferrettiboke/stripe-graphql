@@ -1,15 +1,26 @@
 import { Server } from "http";
 import * as path from "path";
+import * as glob from "glob";
+import { types as stripeTypes } from "stripe-graphql";
 import { ApolloServer, express, makeSchema, yogaEject } from "yoga";
 import context from "./context";
-import * as types from "./graphql";
+
+let types = {};
+const files = glob.sync("./src/graphql/**/*.ts");
+files.forEach(file => {
+  const module = require(path.resolve(file));
+  types = { ...types, ...module };
+});
 
 export default yogaEject({
   async server() {
     const app = express();
 
     const schema = makeSchema({
-      types,
+      types: {
+        ...stripeTypes,
+        ...types
+      },
       outputs: {
         schema: path.join(__dirname, "./schema.graphql"),
         typegen: path.join(__dirname, "../.yoga/nexus.ts")

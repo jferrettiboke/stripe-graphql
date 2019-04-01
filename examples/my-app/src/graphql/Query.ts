@@ -1,7 +1,8 @@
-import { stripeObjectType } from "stripe-graphql";
+import { objectType } from "nexus";
 
-export const Query = stripeObjectType({
+export const Query = objectType({
   name: "Query",
-  fields: ["*"],
-  definition(t) {}
+  definition(t) {
+    t.string("hello", () => "Hello world!");
+  }
 });
