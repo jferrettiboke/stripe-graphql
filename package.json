@@ -1,6 +1,6 @@
 {
   "name": "stripe-graphql",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Stripe API implementation in GraphQL.",
   "main": "src/index.ts",
   "repository": "https://github.com/jferrettiboke/stripe-graphql.git",
