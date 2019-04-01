@@ -8,8 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev -r dotenv/config src/server.ts",
-    "gen": "graphql-binding --language typescript --input ./src/schema.ts --outputBinding ./src/generated/binding.ts",
-    "example": "ts-node-dev -r dotenv/config examples/with-binding/index.ts"
+    "gen:bindings": "graphql-binding --language typescript --input ./src/schema.ts --outputBinding ./src/generated/binding.ts",
+    "gen:types": "ts-node-dev -r dotenv/config src/generate-types.ts"
   },
   "dependencies": {
     "glob": "^7.1.3",
@@ -20,10 +20,12 @@
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
+    "@types/prettier": "^1.16.1",
     "@types/stripe": "^6.25.6",
     "dotenv": "^7.0.0",
     "graphql-yoga": "^1.16.7",
     "nodemon": "^1.18.7",
+    "prettier": "^1.16.4",
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.3.4000"
   }

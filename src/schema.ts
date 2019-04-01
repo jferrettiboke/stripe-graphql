@@ -1,14 +1,6 @@
 import * as path from "path";
-import * as glob from "glob";
 import { makeSchema } from "nexus";
-
-let types = {};
-
-const files = glob.sync("./src/graphql/**/*.ts", {});
-files.forEach(file => {
-  const module = require(path.resolve(file));
-  types = { ...types, ...module };
-});
+import types from "./types";
 
 const schema = makeSchema({
   types,
@@ -17,7 +9,7 @@ const schema = makeSchema({
     typegen: path.join(__dirname, "./generated/types.d.ts")
   },
   typegenAutoConfig: {
-    debug: true,
+    debug: false,
     contextType: "t.Context",
     sources: [
       {

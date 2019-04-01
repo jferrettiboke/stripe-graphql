@@ -1,25 +1,23 @@
 import { objectType } from "nexus";
+import generatedTypes from "./generated/mapped-types";
 
 interface TypeFields {
   [key: string]: string | any;
 }
 
-const cardFieldTypeMapping: TypeFields = {
-  id: "ID",
-  exp_month: "Int",
-  exp_year: "Int",
-  brand: "String",
-  last4: "String"
-};
+// const cardFieldTypeMapping: TypeFields = {
+//   id: "ID",
+//   exp_month: "Int",
+//   exp_year: "Int",
+//   brand: "String",
+//   last4: "String"
+// };
 
 interface Types {
   [key: string]: TypeFields;
 }
 
-const types: Types = {
-  Card: cardFieldTypeMapping
-  // More types...
-};
+const types: Types = generatedTypes;
 
 interface Field {
   name: string;
