@@ -6,7 +6,9 @@ export const CustomerCards = extendType({
     t.list.field("cards", {
       type: "Card",
       async resolve({ id }, args, context) {
-        const { data } = await context.stripe.customers.listCards(id);
+        const { data } = await context.stripe.customers.listSources(id, {
+          object: "card"
+        });
         return data;
       }
     });

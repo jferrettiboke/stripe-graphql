@@ -41,6 +41,8 @@ export function stripeObjectType(cfg: StripeObjectType) {
   return objectType({
     name,
     definition(t) {
+      t.string("wepaaaa", () => "weeeeepa");
+
       fields.forEach(field => {
         if (typeof field === "string") {
           t.field(field, { type: types[name][field] });

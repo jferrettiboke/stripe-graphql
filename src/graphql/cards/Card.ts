@@ -12,5 +12,13 @@ export const Card = objectType({
     t.field("funding", { type: "CARD_FUNDING_TYPE" });
     t.string("last4", { nullable: true });
     t.string("name", { nullable: true });
+
+    t.stripeObjectType({
+      name: "Card",
+      fields: [
+        { name: "exp_month", alias: "custom_expMonth" },
+        { name: "exp_year", alias: "custom_expYear" }
+      ]
+    });
   }
 });
