@@ -311,9 +311,44 @@ enum CURRENCY {
 }
 
 type Customer implements Metadata & Node {
+  """The customer’s address."""
+  address: Address
+
+  """
+  Current balance, if any, being stored on the customer. If negative, the
+  customer has credit to apply to their next invoice. If positive, the customer
+  has an amount owed that will be added to their next invoice. The balance does
+  not refer to any unpaid invoices; it solely takes into account amounts that
+  have yet to be successfully applied to any invoice. This balance is only taken
+  into account as invoices are finalized.
+  """
+  balance: [CustomerBalanceTransaction!]!
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
   charges: [Charge!]!
+
+  """
+  Time at which the object was created. Measured in seconds since the Unix epoch.
+  """
+  created: Int!
+
+  """
+  Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
+  """
+  currency: String!
+
+  """
+  When the customer’s latest invoice is billed by charging automatically,
+  delinquent is true if the invoice’s latest charge is failed. When the
+  customer’s latest invoice is billed by sending an invoice, delinquent is true
+  if the invoice is not paid by its due date.
+  """
+  delinquent: Boolean!
+
+  """
+  An arbitrary string attached to the object. Often useful for displaying to users.
+  """
+  description: String!
 
   """The customer's email address."""
   email: String
@@ -330,6 +365,13 @@ type Customer implements Metadata & Node {
   """String representing the object's type."""
   object: String!
   subscriptions: [_Subscription!]!
+}
+
+type CustomerBalanceTransaction {
+  amount: Int!
+  currency: String!
+  id: ID!
+  object: String!
 }
 
 """DateTime custom scalar type."""
