@@ -6,7 +6,7 @@ export const AccountBalanceTransactions = extendType({
     t.list.field("balanceTransactions", {
       type: "BalanceTransaction",
       async resolve({ id }, args, context) {
-        const { data } = await context.stripe.balance.listTransactions({
+        const { data } = await context.stripe.balanceTransactions.list({
           stripe_account: id
         });
         return data;

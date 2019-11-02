@@ -25,7 +25,7 @@ type Account implements Node {
 
   """String representing the object's type."""
   object: String!
-  verification: AccountVerification!
+  verification: AccountVerification
 }
 
 type AccountVerification {
@@ -123,8 +123,6 @@ type BankAccount implements Node {
 type Card implements Node {
   brand: String
   country: String
-  custom_expMonth: Int!
-  custom_expYear: Int!
   default_for_currency: Boolean
   exp_month: Int
   exp_year: Int
@@ -412,9 +410,9 @@ interface Node {
 }
 
 type Plan implements Node {
-  amount: Int!
+  amount: Int
   currency: String!
-  formattedAmount: String!
+  formattedAmount: String
 
   """Unique identifier for the object."""
   id: ID!

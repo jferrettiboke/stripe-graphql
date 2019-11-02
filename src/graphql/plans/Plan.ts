@@ -5,10 +5,16 @@ export const Plan = objectType({
   name: "Plan",
   definition(t) {
     t.implements("Node");
-    t.int("amount");
-    t.string("currency");
-    t.string("formattedAmount", o =>
-      formatCurrency({ amount: o.amount, currency: o.currency })
-    );
+    t.int("amount", { nullable: true, resolve: o => o.amount });
+    t.string("currency", o => o.currency);
+    t.string("formattedAmount", {
+      nullable: true,
+      resolve: o => {
+        if (o.amount === null) {
+          return null;
+        }
+        return formatCurrency({ amount: o.amount, currency: o.currency });
+      }
+    });
   }
 });

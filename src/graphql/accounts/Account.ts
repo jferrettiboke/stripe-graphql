@@ -10,7 +10,8 @@ export const Account = objectType({
       nullable: true
     });
     t.field("verification", {
-      type: "AccountVerification"
+      type: "AccountVerification",
+      nullable: true
     });
   }
 });

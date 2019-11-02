@@ -150,7 +150,7 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     legal_entity: NexusGenRootTypes['LegalEntity'] | null; // LegalEntity
     object: string; // String!
-    verification: NexusGenRootTypes['AccountVerification']; // AccountVerification!
+    verification: NexusGenRootTypes['AccountVerification'] | null; // AccountVerification
   }
   AccountVerification: { // field return type
     disabled_reason: string | null; // String
@@ -225,8 +225,6 @@ export interface NexusGenFieldTypes {
   Card: { // field return type
     brand: string | null; // String
     country: string | null; // String
-    custom_expMonth: number; // Int!
-    custom_expYear: number; // Int!
     default_for_currency: boolean | null; // Boolean
     exp_month: number | null; // Int
     exp_year: number | null; // Int
@@ -300,9 +298,9 @@ export interface NexusGenFieldTypes {
     value: string; // String!
   }
   Plan: { // field return type
-    amount: number; // Int!
+    amount: number | null; // Int
     currency: string; // String!
-    formattedAmount: string; // String!
+    formattedAmount: string | null; // String
     id: string; // ID!
     object: string; // String!
     product: NexusGenRootTypes['Product']; // Product!
