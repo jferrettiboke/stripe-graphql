@@ -1,6 +1,6 @@
 import { extendType } from "nexus";
 
-export const ProductPlans = extendType({
+export const productPlansField = extendType({
   type: "Product",
   definition(t) {
     t.list.field("plans", {
