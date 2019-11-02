@@ -94,10 +94,22 @@ export interface NexusGenRootTypes {
     type?: string | null; // String
   }
   Good: { // root type
+    active: boolean; // Boolean!
     attributes: string[]; // [String!]!
+    caption?: string | null; // String
+    created: number; // Int!
+    deactivate_on: string[]; // [String!]!
+    description?: string | null; // String
     id: string; // ID!
+    images: string[]; // [String!]!
+    livemode: boolean; // Boolean!
+    name: string; // String!
     object: string; // String!
+    package_dimensions?: NexusGenRootTypes['PackageDimensions'] | null; // PackageDimensions
+    shippable: boolean; // Boolean!
     type: string; // String!
+    updated: number; // Int!
+    url: string; // String!
   }
   Invoice: t.Invoice;
   InvoiceLineItem: t.InvoiceLineItem;
@@ -113,12 +125,25 @@ export interface NexusGenRootTypes {
     type?: NexusGenEnums['LEGAL_ENTITY_TYPE'] | null; // LEGAL_ENTITY_TYPE
   }
   MetadataType: t.MetadataType;
+  PackageDimensions: { // root type
+    height: number; // Float!
+    length: number; // Float!
+    weight: number; // Float!
+    width: number; // Float!
+  }
   Plan: t.Plan;
   Query: {};
   Service: { // root type
+    active: boolean; // Boolean!
+    created: number; // Int!
     id: string; // ID!
+    livemode: boolean; // Boolean!
+    name: string; // String!
     object: string; // String!
+    statement_descriptor?: string | null; // String
     type: string; // String!
+    unit_label?: string | null; // String
+    updated: number; // Int!
   }
   VerificationFields: { // root type
     additional?: Array<string | null> | null; // [String]
@@ -274,10 +299,23 @@ export interface NexusGenFieldTypes {
     type: string | null; // String
   }
   Good: { // field return type
+    active: boolean; // Boolean!
     attributes: string[]; // [String!]!
+    caption: string | null; // String
+    created: number; // Int!
+    deactivate_on: string[]; // [String!]!
+    description: string | null; // String
     id: string; // ID!
+    images: string[]; // [String!]!
+    livemode: boolean; // Boolean!
+    metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
+    name: string; // String!
     object: string; // String!
+    package_dimensions: NexusGenRootTypes['PackageDimensions'] | null; // PackageDimensions
+    shippable: boolean; // Boolean!
     type: string; // String!
+    updated: number; // Int!
+    url: string; // String!
   }
   Invoice: { // field return type
     amount_due: number; // Int!
@@ -307,6 +345,12 @@ export interface NexusGenFieldTypes {
     key: string; // String!
     value: string; // String!
   }
+  PackageDimensions: { // field return type
+    height: number; // Float!
+    length: number; // Float!
+    weight: number; // Float!
+    width: number; // Float!
+  }
   Plan: { // field return type
     amount: number | null; // Int
     currency: string; // String!
@@ -335,10 +379,18 @@ export interface NexusGenFieldTypes {
     upcomingInvoice: NexusGenRootTypes['Invoice'] | null; // Invoice
   }
   Service: { // field return type
+    active: boolean; // Boolean!
+    created: number; // Int!
     id: string; // ID!
+    livemode: boolean; // Boolean!
+    metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
+    name: string; // String!
     object: string; // String!
     plans: NexusGenRootTypes['Plan'][]; // [Plan!]!
+    statement_descriptor: string | null; // String
     type: string; // String!
+    unit_label: string | null; // String
+    updated: number; // Int!
   }
   VerificationFields: { // field return type
     additional: Array<string | null> | null; // [String]
@@ -357,9 +409,14 @@ export interface NexusGenFieldTypes {
     object: string; // String!
   }
   Product: { // field return type
+    active: boolean; // Boolean!
+    created: number; // Int!
     id: string; // ID!
+    livemode: boolean; // Boolean!
+    name: string; // String!
     object: string; // String!
     type: string; // String!
+    updated: number; // Int!
   }
 }
 
@@ -401,14 +458,14 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
-  Metadata: "Customer"
+  Metadata: "Customer" | "Good" | "Service"
   Node: "Account" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "_Subscription" | "InvoiceLineItem" | "Plan"
   Product: "Good" | "Service"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Good" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "Plan" | "Query" | "Service" | "VerificationFields" | "_Subscription";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "Dob" | "FeeDetails" | "Good" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "PackageDimensions" | "Plan" | "Query" | "Service" | "VerificationFields" | "_Subscription";
 
 export type NexusGenInputNames = never;
 

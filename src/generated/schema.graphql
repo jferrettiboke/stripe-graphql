@@ -350,11 +350,91 @@ type FeeDetails {
   type: String
 }
 
-type Good implements Product {
+type Good implements Metadata & Product {
+  """Whether the product is currently available for purchase."""
+  active: Boolean!
+
+  """
+  A list of up to 5 attributes that each SKU can provide values for (e.g.,
+  `["color", "size"]`). Only applicable to products of `type=good`.
+  """
   attributes: [String!]!
+
+  """
+  A short one-line description of the product, meant to be displayable to the
+  customer. Only applicable to products of `type=good`.
+  """
+  caption: String
+
+  """
+  Time at which the object was created. Measured in seconds since the Unix epoch.
+  """
+  created: Int!
+
+  """
+  An array of connect application identifiers that cannot purchase this product. Only applicable to products of `type=good`.
+  """
+  deactivate_on: [String!]!
+
+  """
+  The product’s description, meant to be displayable to the customer. Only applicable to products of `type=good`.
+  """
+  description: String
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """
+  A list of up to 8 URLs of images for this product, meant to be displayable to
+  the customer. Only applicable to products of `type=good`.
+  """
+  images: [String!]!
+
+  """
+  Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
+  """
+  livemode: Boolean!
+
+  """
+  Set of key-value pairs that you can attach to an object. This can be useful
+  for storing additional information about the object in a structured format.
+  """
+  metadata: [MetadataType!]!
+
+  """
+  The product’s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
+  """
+  name: String!
+
+  """
+  String representing the object’s type. Objects of the same type share the same value.
+  """
   object: String!
+
+  """
+  The dimensions of this product for shipping purposes. A SKU associated with
+  this product can override this value by having its own `package_dimensions`.
+  Only applicable to products of `type=good`.
+  """
+  package_dimensions: PackageDimensions
+
+  """
+  Whether this product is a shipped good. Only applicable to products of `type=good`.
+  """
+  shippable: Boolean!
+
+  """
+  The type of the product. The product is either of type good, which is eligible
+  for use with Orders and SKUs, or `service`, which is eligible for use with
+  Subscriptions and Plans.
+  """
   type: String!
+  updated: Int!
+
+  """
+  A URL of a publicly-accessible webpage for this product. Only applicable to products of `type=good`.
+  """
+  url: String!
 }
 
 type Invoice {
@@ -416,6 +496,20 @@ interface Node {
   object: String!
 }
 
+type PackageDimensions {
+  """Height, in inches."""
+  height: Float!
+
+  """Length, in inches."""
+  length: Float!
+
+  """Weight, in ounces."""
+  weight: Float!
+
+  """Width, in inches."""
+  width: Float!
+}
+
 type Plan implements Node {
   amount: Int
   currency: String!
@@ -430,9 +524,39 @@ type Plan implements Node {
 }
 
 interface Product {
+  """Whether the product is currently available for purchase."""
+  active: Boolean!
+
+  """
+  Time at which the object was created. Measured in seconds since the Unix epoch.
+  """
+  created: Int!
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """
+  Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
+  """
+  livemode: Boolean!
+
+  """
+  The product’s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
+  """
+  name: String!
+
+  """
+  String representing the object’s type. Objects of the same type share the same value.
+  """
   object: String!
+
+  """
+  The type of the product. The product is either of type good, which is eligible
+  for use with Orders and SKUs, or `service`, which is eligible for use with
+  Subscriptions and Plans.
+  """
   type: String!
+  updated: Int!
 }
 
 type Query {
@@ -455,11 +579,62 @@ type Query {
   upcomingInvoice(customerId: ID!): Invoice
 }
 
-type Service implements Product {
+type Service implements Metadata & Product {
+  """Whether the product is currently available for purchase."""
+  active: Boolean!
+
+  """
+  Time at which the object was created. Measured in seconds since the Unix epoch.
+  """
+  created: Int!
+
+  """Unique identifier for the object."""
   id: ID!
+
+  """
+  Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
+  """
+  livemode: Boolean!
+
+  """
+  Set of key-value pairs that you can attach to an object. This can be useful
+  for storing additional information about the object in a structured format.
+  """
+  metadata: [MetadataType!]!
+
+  """
+  The product’s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
+  """
+  name: String!
+
+  """
+  String representing the object’s type. Objects of the same type share the same value.
+  """
   object: String!
   plans: [Plan!]!
+
+  """
+  Extra information about a product which will appear on your customer’s credit
+  card statement. In the case that multiple products are billed at once, the
+  first statement descriptor will be used. Only available on products of
+  `type=service`.
+  """
+  statement_descriptor: String
+
+  """
+  The type of the product. The product is either of type good, which is eligible
+  for use with Orders and SKUs, or `service`, which is eligible for use with
+  Subscriptions and Plans.
+  """
   type: String!
+
+  """
+  A label that represents units of this product, such as seat(s), in Stripe and
+  on customers’ receipts and invoices. Only available on products of
+  `type=service`.
+  """
+  unit_label: String
+  updated: Int!
 }
 
 type VerificationFields {
