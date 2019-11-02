@@ -290,7 +290,7 @@ export interface NexusGenFieldTypes {
     created: number; // Int!
     currency: string; // String!
     delinquent: boolean; // Boolean!
-    description: string; // String!
+    description: string | null; // String
     email: string | null; // String
     id: string; // ID!
     metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!

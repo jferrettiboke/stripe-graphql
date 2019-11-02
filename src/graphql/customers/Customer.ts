@@ -34,6 +34,7 @@ export const Customer = objectType({
         "When the customer’s latest invoice is billed by charging automatically, delinquent is true if the invoice’s latest charge is failed. When the customer’s latest invoice is billed by sending an invoice, delinquent is true if the invoice is not paid by its due date."
     });
     t.string("description", {
+      nullable: true,
       description:
         "An arbitrary string attached to the object. Often useful for displaying to users."
     });

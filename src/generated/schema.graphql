@@ -348,7 +348,7 @@ type Customer implements Metadata & Node {
   """
   An arbitrary string attached to the object. Often useful for displaying to users.
   """
-  description: String!
+  description: String
 
   """The customer's email address."""
   email: String
