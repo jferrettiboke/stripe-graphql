@@ -350,6 +350,13 @@ type FeeDetails {
   type: String
 }
 
+type Good implements Product {
+  attributes: [String!]!
+  id: ID!
+  object: String!
+  type: String!
+}
+
 type Invoice {
   amount_due: Int!
   amount_paid: Int!
@@ -422,14 +429,9 @@ type Plan implements Node {
   product: Product!
 }
 
-type Product implements Node {
-  """Unique identifier for the object."""
+interface Product {
   id: ID!
-  name: String!
-
-  """String representing the object's type."""
   object: String!
-  plans: [Plan!]!
   type: String!
 }
 
@@ -451,6 +453,13 @@ type Query {
   subscription(id: ID!): _Subscription
   subscriptions: [_Subscription!]!
   upcomingInvoice(customerId: ID!): Invoice
+}
+
+type Service implements Product {
+  id: ID!
+  object: String!
+  plans: [Plan!]!
+  type: String!
 }
 
 type VerificationFields {

@@ -1,4 +1,4 @@
-import { queryField, idArg } from "nexus";
+import { queryField } from "nexus";
 
 export const productsQueryField = queryField("products", {
   type: "Product",
