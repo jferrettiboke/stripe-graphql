@@ -151,13 +151,13 @@ export interface NexusGenRootTypes {
     unit_label?: string | null; // String
     updated: number; // Int!
   }
+  StripeSubscription: {};
   VerificationFields: { // root type
     additional?: Array<string | null> | null; // [String]
     minimum?: Array<string | null> | null; // [String]
   }
-  _Subscription: t._Subscription;
   Metadata: t.Metadata;
-  Node: NexusGenRootTypes['Account'] | NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['_Subscription'] | NexusGenRootTypes['InvoiceLineItem'] | NexusGenRootTypes['Plan'];
+  Node: NexusGenRootTypes['Account'] | NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['StripeSubscription'] | NexusGenRootTypes['InvoiceLineItem'] | NexusGenRootTypes['Plan'];
   Product: t.Product;
   String: string;
   Int: number;
@@ -295,7 +295,7 @@ export interface NexusGenFieldTypes {
     id: string; // ID!
     metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
     object: string; // String!
-    subscriptions: NexusGenRootTypes['_Subscription'][]; // [_Subscription!]!
+    subscriptions: NexusGenRootTypes['StripeSubscription'][]; // [StripeSubscription!]!
   }
   CustomerBalanceTransaction: { // field return type
     amount: number; // Int!
@@ -392,8 +392,8 @@ export interface NexusGenFieldTypes {
     platform: NexusGenRootTypes['Account']; // Account!
     product: NexusGenRootTypes['Product'] | null; // Product
     products: NexusGenRootTypes['Product'][]; // [Product!]!
-    subscription: NexusGenRootTypes['_Subscription'] | null; // _Subscription
-    subscriptions: NexusGenRootTypes['_Subscription'][]; // [_Subscription!]!
+    subscription: NexusGenRootTypes['StripeSubscription'] | null; // StripeSubscription
+    subscriptions: NexusGenRootTypes['StripeSubscription'][]; // [StripeSubscription!]!
     upcomingInvoice: NexusGenRootTypes['Invoice'] | null; // Invoice
   }
   Service: { // field return type
@@ -410,14 +410,14 @@ export interface NexusGenFieldTypes {
     unit_label: string | null; // String
     updated: number; // Int!
   }
-  VerificationFields: { // field return type
-    additional: Array<string | null> | null; // [String]
-    minimum: Array<string | null> | null; // [String]
-  }
-  _Subscription: { // field return type
+  StripeSubscription: { // field return type
     customer: NexusGenRootTypes['Customer']; // Customer!
     id: string; // ID!
     object: string; // String!
+  }
+  VerificationFields: { // field return type
+    additional: Array<string | null> | null; // [String]
+    minimum: Array<string | null> | null; // [String]
   }
   Metadata: { // field return type
     metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
@@ -477,13 +477,13 @@ export interface NexusGenArgTypes {
 
 export interface NexusGenAbstractResolveReturnTypes {
   Metadata: "Customer" | "Good" | "Service"
-  Node: "Account" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "_Subscription" | "InvoiceLineItem" | "Plan"
+  Node: "Account" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "StripeSubscription" | "InvoiceLineItem" | "Plan"
   Product: "Good" | "Service"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "CustomerBalanceTransaction" | "Dob" | "FeeDetails" | "Good" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "PackageDimensions" | "Plan" | "Query" | "Service" | "VerificationFields" | "_Subscription";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "CustomerBalanceTransaction" | "Dob" | "FeeDetails" | "Good" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "PackageDimensions" | "Plan" | "Query" | "Service" | "StripeSubscription" | "VerificationFields";
 
 export type NexusGenInputNames = never;
 

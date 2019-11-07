@@ -2,16 +2,6 @@
 ### Do not make changes to this file directly
 
 
-type _Subscription implements Node {
-  customer: Customer!
-
-  """Unique identifier for the object."""
-  id: ID!
-
-  """String representing the object's type."""
-  object: String!
-}
-
 type Account implements Node {
   balance: Balance!
   balanceTransactions: [BalanceTransaction!]!
@@ -364,7 +354,7 @@ type Customer implements Metadata & Node {
 
   """String representing the object's type."""
   object: String!
-  subscriptions: [_Subscription!]!
+  subscriptions: [StripeSubscription!]!
 }
 
 type CustomerBalanceTransaction {
@@ -616,8 +606,8 @@ type Query {
   platform: Account!
   product(id: ID!): Product
   products: [Product!]!
-  subscription(id: ID!): _Subscription
-  subscriptions: [_Subscription!]!
+  subscription(id: ID!): StripeSubscription
+  subscriptions: [StripeSubscription!]!
   upcomingInvoice(customerId: ID!): Invoice
 }
 
@@ -677,6 +667,16 @@ type Service implements Metadata & Product {
   """
   unit_label: String
   updated: Int!
+}
+
+type StripeSubscription implements Node {
+  customer: Customer!
+
+  """Unique identifier for the object."""
+  id: ID!
+
+  """String representing the object's type."""
+  object: String!
 }
 
 type VerificationFields {

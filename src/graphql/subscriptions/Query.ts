@@ -4,7 +4,7 @@ export const SubscriptionrQueries = extendType({
   type: "Query",
   definition(t) {
     t.list.field("subscriptions", {
-      type: "_Subscription",
+      type: "StripeSubscription",
       async resolve(root, args, context, info) {
         const { data } = await context.stripe.subscriptions.list();
         return data;
@@ -12,7 +12,7 @@ export const SubscriptionrQueries = extendType({
     });
 
     t.field("subscription", {
-      type: "_Subscription",
+      type: "StripeSubscription",
       nullable: true,
       args: {
         id: idArg({ required: true })

@@ -1,7 +1,7 @@
 import { objectType } from "nexus";
 
-export const _Subscription = objectType({
-  name: "_Subscription",
+export const StripeSubscription = objectType({
+  name: "StripeSubscription",
   definition(t) {
     t.implements("Node");
   }
