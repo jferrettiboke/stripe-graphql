@@ -19,10 +19,12 @@
     "stripe": "^7.11.0"
   },
   "devDependencies": {
+    "@types/faker": "^4.1.7",
     "@types/glob": "^7.1.1",
     "@types/prettier": "^1.18.3",
     "@types/stripe": "^7.10.7",
     "dotenv": "^8.2.0",
+    "faker": "^4.1.0",
     "graphql-yoga": "^1.18.3",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
