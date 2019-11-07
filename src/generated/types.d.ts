@@ -151,7 +151,7 @@ export interface NexusGenRootTypes {
     unit_label?: string | null; // String
     updated: number; // Int!
   }
-  StripeSubscription: {};
+  StripeSubscription: t.StripeSubscription;
   VerificationFields: { // root type
     additional?: Array<string | null> | null; // [String]
     minimum?: Array<string | null> | null; // [String]
