@@ -25,6 +25,7 @@ export const Customer = objectType({
         "Time at which the object was created. Measured in seconds since the Unix epoch."
     });
     t.string("currency", {
+      nullable: true,
       description:
         "Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes."
     });

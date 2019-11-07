@@ -288,7 +288,7 @@ export interface NexusGenFieldTypes {
     cards: NexusGenRootTypes['Card'][]; // [Card!]!
     charges: NexusGenRootTypes['Charge'][]; // [Charge!]!
     created: number; // Int!
-    currency: string; // String!
+    currency: string | null; // String
     delinquent: boolean; // Boolean!
     description: string | null; // String
     email: string | null; // String

@@ -335,7 +335,7 @@ type Customer implements Metadata & Node {
   """
   Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
   """
-  currency: String!
+  currency: String
 
   """
   When the customer’s latest invoice is billed by charging automatically,
