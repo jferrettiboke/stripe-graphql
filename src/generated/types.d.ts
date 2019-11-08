@@ -152,6 +152,17 @@ export interface NexusGenRootTypes {
     updated: number; // Int!
   }
   StripeSubscription: t.StripeSubscription;
+  Tier: { // root type
+    flat_amount: number; // Int!
+    flat_amount_decimal: string; // String!
+    unit_amount: number; // Int!
+    unit_amount_decimal: string; // String!
+    up_to: number; // Int!
+  }
+  TransformUsage: { // root type
+    divide_by: number; // Int!
+    round: string; // String!
+  }
   VerificationFields: { // root type
     additional?: Array<string | null> | null; // [String]
     minimum?: Array<string | null> | null; // [String]
@@ -370,12 +381,27 @@ export interface NexusGenFieldTypes {
     width: number; // Float!
   }
   Plan: { // field return type
+    active: boolean; // Boolean!
+    aggregate_usage: string | null; // String
     amount: number | null; // Int
+    amount_decimal: string | null; // String
+    billing_scheme: string; // String!
+    created: number; // Int!
     currency: string; // String!
     formattedAmount: string | null; // String
     id: string; // ID!
+    interval: string; // String!
+    interval_count: number; // Int!
+    livemode: boolean; // Boolean!
+    metadata: NexusGenRootTypes['MetadataType'][]; // [MetadataType!]!
+    nickname: string | null; // String
     object: string; // String!
     product: NexusGenRootTypes['Product']; // Product!
+    tiers: NexusGenRootTypes['Tier'][]; // [Tier!]!
+    tiers_mode: string | null; // String
+    transform_usage: NexusGenRootTypes['TransformUsage']; // TransformUsage!
+    trial_period_days: number | null; // Int
+    usage_type: string; // String!
   }
   Query: { // field return type
     account: NexusGenRootTypes['Account'] | null; // Account
@@ -414,6 +440,17 @@ export interface NexusGenFieldTypes {
     customer: NexusGenRootTypes['Customer']; // Customer!
     id: string; // ID!
     object: string; // String!
+  }
+  Tier: { // field return type
+    flat_amount: number; // Int!
+    flat_amount_decimal: string; // String!
+    unit_amount: number; // Int!
+    unit_amount_decimal: string; // String!
+    up_to: number; // Int!
+  }
+  TransformUsage: { // field return type
+    divide_by: number; // Int!
+    round: string; // String!
   }
   VerificationFields: { // field return type
     additional: Array<string | null> | null; // [String]
@@ -476,14 +513,14 @@ export interface NexusGenArgTypes {
 }
 
 export interface NexusGenAbstractResolveReturnTypes {
-  Metadata: "Customer" | "Good" | "Service"
+  Metadata: "Customer" | "Plan" | "Good" | "Service"
   Node: "Account" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "StripeSubscription" | "InvoiceLineItem" | "Plan"
   Product: "Good" | "Service"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "CustomerBalanceTransaction" | "Dob" | "FeeDetails" | "Good" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "PackageDimensions" | "Plan" | "Query" | "Service" | "StripeSubscription" | "VerificationFields";
+export type NexusGenObjectNames = "Account" | "AccountVerification" | "AccountVerificationFields" | "AdditionalOwner" | "Address" | "Balance" | "BalanceItem" | "BalanceSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "CountrySpec" | "Customer" | "CustomerBalanceTransaction" | "Dob" | "FeeDetails" | "Good" | "Invoice" | "InvoiceLineItem" | "LegalEntity" | "MetadataType" | "PackageDimensions" | "Plan" | "Query" | "Service" | "StripeSubscription" | "Tier" | "TransformUsage" | "VerificationFields";
 
 export type NexusGenInputNames = never;
 
