@@ -627,7 +627,7 @@ type Plan implements Metadata & Node {
   `billing_scheme` to be set to `tiered`. See also the documentation for
   `billing_scheme`.
   """
-  tiers: [Tier!]!
+  tiers: [Tier!]
 
   """
   Defines if the tiering price should be `graduated` or `volume` based. In
@@ -641,7 +641,7 @@ type Plan implements Metadata & Node {
   Apply a transformation to the reported usage or set quantity before computing
   the billed price. Cannot be combined with `tiers`.
   """
-  transform_usage: TransformUsage!
+  transform_usage: TransformUsage
 
   """
   Default number of trial days when subscribing a customer to this plan using `trial_from_plan=true`.

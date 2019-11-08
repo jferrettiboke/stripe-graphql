@@ -63,6 +63,7 @@ export const Plan = objectType({
     });
     t.list.field("tiers", {
       type: "Tier",
+      nullable: true,
       description:
         "Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to `tiered`. See also the documentation for `billing_scheme`."
     });
@@ -73,6 +74,7 @@ export const Plan = objectType({
     });
     t.field("transform_usage", {
       type: "TransformUsage",
+      nullable: true,
       description:
         "Apply a transformation to the reported usage or set quantity before computing the billed price. Cannot be combined with `tiers`."
     });

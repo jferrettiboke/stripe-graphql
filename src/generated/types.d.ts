@@ -18,6 +18,7 @@ declare global {
   }
 }
 
+
 declare global {
   interface NexusGen extends NexusGenTypes {}
 }
@@ -397,9 +398,9 @@ export interface NexusGenFieldTypes {
     nickname: string | null; // String
     object: string; // String!
     product: NexusGenRootTypes['Product']; // Product!
-    tiers: NexusGenRootTypes['Tier'][]; // [Tier!]!
+    tiers: NexusGenRootTypes['Tier'][] | null; // [Tier!]
     tiers_mode: string | null; // String
-    transform_usage: NexusGenRootTypes['TransformUsage']; // TransformUsage!
+    transform_usage: NexusGenRootTypes['TransformUsage'] | null; // TransformUsage
     trial_period_days: number | null; // Int
     usage_type: string; // String!
   }
@@ -551,4 +552,14 @@ export interface NexusGenTypes {
   allNamedTypes: NexusGenTypes['allInputTypes'] | NexusGenTypes['allOutputTypes']
   abstractTypes: NexusGenTypes['interfaceNames'] | NexusGenTypes['unionNames'];
   abstractResolveReturn: NexusGenAbstractResolveReturnTypes;
+}
+
+
+declare global {
+  interface NexusGenPluginTypeConfig<TypeName extends string> {
+  }
+  interface NexusGenPluginFieldConfig<TypeName extends string, FieldName extends string> {
+  }
+  interface NexusGenPluginSchemaConfig {
+  }
 }
