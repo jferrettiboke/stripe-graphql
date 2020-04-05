@@ -136,7 +136,13 @@ enum CARD_FUNDING_TYPE {
 
 type Charge implements Node {
   amount: Int
+
+  """
+  Time at which the object was created. Measured in seconds since the Unix epoch.
+  """
+  created: Int!
   currency: String
+  customer: Customer
 
   """Unique identifier for the object."""
   id: ID!

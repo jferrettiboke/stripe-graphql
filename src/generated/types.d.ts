@@ -283,7 +283,9 @@ export interface NexusGenFieldTypes {
   }
   Charge: { // field return type
     amount: number | null; // Int
+    created: number; // Int!
     currency: string | null; // String
+    customer: NexusGenRootTypes['Customer'] | null; // Customer
     id: string; // ID!
     object: string; // String!
     status: string; // String!
