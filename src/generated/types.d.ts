@@ -484,6 +484,11 @@ export interface NexusGenArgTypes {
     charge: { // args
       id: string; // ID!
     }
+    charges: { // args
+      endingBefore?: string | null; // String
+      limit?: number | null; // Int
+      startingAfter?: string | null; // String
+    }
     countrySpecs: { // args
       country: string; // String!
     }

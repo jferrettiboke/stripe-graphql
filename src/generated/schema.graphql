@@ -697,7 +697,7 @@ type Query {
   account(id: ID!): Account
   accounts: [Account!]!
   charge(id: ID!): Charge
-  charges: [Charge!]!
+  charges(endingBefore: String, limit: Int, startingAfter: String): [Charge!]!
   countrySpecs(country: String!): CountrySpec
   customer(id: ID!): Customer
   customers(endingBefore: String, limit: Int, startingAfter: String): [Customer!]!
