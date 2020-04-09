@@ -1,4 +1,4 @@
-// import { dynamicOutputMethod } from "nexus";
+// import { dynamicOutputMethod } from "@nexus/schema";
 // import generatedTypes from "../generated/mapped-types";
 
 // interface TypeFields {

@@ -1,4 +1,4 @@
-![Preview](./preview.png)
+![Preview](./preview.jpg)
 
 # stripe-graphql
 
@@ -18,7 +18,7 @@
 - Formatted amounts ready to use
 - DataLoader support for batching and caching
 - Type-safe bindings with TypeScript
-- Nexus extension/plugin for more easy integration (WIP)
+- Nexus extension/plugin for more easy integration
 
 ## Get started
 

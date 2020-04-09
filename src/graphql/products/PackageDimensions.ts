@@ -1,11 +1,11 @@
-import { objectType } from "nexus";
+import { objectType } from "@nexus/schema";
 
 export const PackageDimensions = objectType({
   name: "PackageDimensions",
   definition(t) {
-    t.float("height", { description: "Height, in inches." });
-    t.float("length", { description: "Length, in inches." });
-    t.float("weight", { description: "Weight, in ounces." });
-    t.float("width", { description: "Width, in inches." });
-  }
+    t.float("height");
+    t.float("length");
+    t.float("weight");
+    t.float("width");
+  },
 });

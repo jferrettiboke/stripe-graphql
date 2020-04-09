@@ -1,14 +1,22 @@
-import { GraphQLServer } from "graphql-yoga";
-import * as Stripe from "stripe";
+import { ApolloServer } from "apollo-server";
+import Stripe from "stripe";
 import schema from "./schema";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
-
-const server = new GraphQLServer({
-  schema,
-  context: { stripe }
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+  apiVersion: "2020-03-02",
 });
 
-server.start({ port: 4001 }, ({ port }) =>
-  console.log(`Server is running on http://localhost:${port}`)
+const server = new ApolloServer({
+  schema,
+  context: {
+    stripe,
+  },
+});
+
+const port = process.env.PORT || 4000;
+
+server.listen({ port }, () =>
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  )
 );

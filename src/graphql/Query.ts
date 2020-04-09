@@ -1,6 +1,6 @@
-import { objectType } from "nexus";
+import { objectType } from "@nexus/schema";
 
 export const Query = objectType({
   name: "Query",
-  definition(t) {}
+  definition(t) {},
 });

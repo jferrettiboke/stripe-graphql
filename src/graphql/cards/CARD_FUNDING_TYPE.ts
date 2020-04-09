@@ -1,6 +1,6 @@
-import { enumType } from "nexus";
+import { enumType } from "@nexus/schema";
 
 export const CARD_FUNDING_TYPE = enumType({
   name: "CARD_FUNDING_TYPE",
-  members: ["credit", "debit", "prepaid", "unknown"]
+  members: ["credit", "debit", "prepaid", "unknown"],
 });

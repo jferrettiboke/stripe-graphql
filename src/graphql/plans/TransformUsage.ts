@@ -1,11 +1,9 @@
-import { objectType } from "nexus";
+import { objectType } from "@nexus/schema";
 
 export const TransformUsage = objectType({
   name: "TransformUsage",
   definition(t) {
-    t.int("divide_by", { description: "Divide usage by this number." });
-    t.string("round", {
-      description: "After division, either round the result `up` or `down`."
-    });
-  }
+    t.int("divide_by");
+    t.string("round");
+  },
 });

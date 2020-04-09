@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { objectType } from "@nexus/schema";
 
 export const Tier = objectType({
   name: "Tier",
@@ -6,18 +6,15 @@ export const Tier = objectType({
     t.int("flat_amount", { description: "Price for the entire tier." });
     t.string("flat_amount_decimal", {
       description:
-        "Same as flat_amount, but contains a decimal value with at most 12 decimal places."
+        "Same as flat_amount, but contains a decimal value with at most 12 decimal places.",
     });
     t.int("unit_amount", {
-      description: "Per unit price for units relevant to the tier."
+      description: "Per unit price for units relevant to the tier.",
     });
     t.string("unit_amount_decimal", {
       description:
-        "Same as unit_amount, but contains a decimal value with at most 12 decimal places."
+        "Same as unit_amount, but contains a decimal value with at most 12 decimal places.",
     });
-    t.int("up_to", {
-      description:
-        "Up to and including to this quantity will be contained in the tier."
-    });
-  }
+    t.int("up_to");
+  },
 });

@@ -2,128 +2,67 @@
 ### Do not make changes to this file directly
 
 
-type Account implements Node {
-  balance: Balance!
-  balanceTransactions: [BalanceTransaction!]!
-  bankAccounts: [BankAccount!]!
-  cards: [Card!]!
-  country: String!
-
-  """Unique identifier for the object."""
-  id: ID!
-  legal_entity: LegalEntity
-
-  """String representing the object's type."""
-  object: String!
-  verification: AccountVerification
+type Amount {
+  formatted: String!
+  raw: Int!
+  raw_formatted: Float!
 }
 
-type AccountVerification {
-  disabled_reason: String
-  due_by: Int
-  fields_needed: [String]
-}
-
-type AccountVerificationFields {
-  company: VerificationFields!
-  individual: VerificationFields!
-}
-
-type AdditionalOwner {
-  address: Address
-  dob: Dob
-  first_name: String
-  last_name: String
-  maiden_name: String
-  personal_id_number_provided: Boolean!
-}
-
-type Address {
-  city: String
-  country: String
-  line1: String
-  line2: String
-  postal_code: String
-  state: String
+interface AmountInterface {
+  amount: Amount!
 }
 
 type Balance {
-  available: [BalanceItem!]!
-  livemode: Boolean!
-  object: String!
-  pending: [BalanceItem!]!
+  available: [BalanceFund!]!
+  pending: [BalanceFund!]!
 }
 
-type BalanceItem {
-  amount: Int!
-  currency: String!
-
-  """Breakdown of balance by source types."""
-  source_types: BalanceSourceTypes!
+type BalanceFund implements AmountInterface & CurrencyInterface {
+  amount: Amount!
+  currency: Currency!
+  source_types: BalanceFundSourceTypes!
 }
 
-type BalanceSourceTypes {
-  """Amount for bank account."""
+type BalanceFundSourceTypes {
   bank_account: Int
-
-  """Amount for card."""
   card: Int
+  fpx: Int
 }
 
-type BalanceTransaction implements Node {
-  amount: Int
-  available_on: Int
-  created: Int
-  currency: String
-  description: String
-  exchange_rate: Float
-  fee: Int
-  fee_details: [FeeDetails!]!
-
-  """Unique identifier for the object."""
+type BalanceTransaction implements AmountInterface & CurrencyInterface & NodeInterface {
+  amount: Amount!
+  currency: Currency!
   id: ID!
-  net: Int
-
-  """String representing the object's type."""
   object: String!
-  source: String
-  status: String
-  type: String
 }
 
-type BankAccount implements Node {
+type BankAccount implements CurrencyInterface & MetadataInterface & NodeInterface {
   account_holder_name: String
   account_holder_type: LEGAL_ENTITY_TYPE
   bank_name: String
   country: String
-  currency: String
+  currency: Currency!
   customer: String
   fingerprint: String
-
-  """Unique identifier for the object."""
   id: ID!
   last4: String
-
-  """String representing the object's type."""
+  metadata: [Metadata!]!
   object: String!
   routing_number: String
   status: String
 }
 
-type Card implements Node {
+type Card implements MetadataInterface & NodeInterface {
   brand: String
   country: String
   default_for_currency: Boolean
   exp_month: Int
   exp_year: Int
   funding: CARD_FUNDING_TYPE!
-
-  """Unique identifier for the object."""
   id: ID!
   last4: String
+  metadata: [Metadata!]!
   name: String
-
-  """String representing the object's type."""
   object: String!
 }
 
@@ -134,358 +73,51 @@ enum CARD_FUNDING_TYPE {
   unknown
 }
 
-type Charge implements Node {
-  amount: Int
-  currency: String
-
-  """Unique identifier for the object."""
+type Charge implements AmountInterface & CurrencyInterface & NodeInterface {
+  amount: Amount!
+  currency: Currency!
   id: ID!
-
-  """String representing the object's type."""
   object: String!
-  status: String!
 }
 
-enum COUNTRY {
-  US
+type Currency {
+  code: String!
+  symbol: String!
 }
 
-type CountrySpec {
-  id: String
-  object: String
-  verificationFields: AccountVerificationFields!
+interface CurrencyInterface {
+  currency: Currency!
 }
 
-"""Currency custom scalar type."""
-scalar Currency
+scalar CurrencyScalar
 
-enum CURRENCY {
-  AED
-  ALL
-  AMD
-  ANG
-  AOA
-  ARS
-  AUD
-  AWG
-  AZN
-  BAM
-  BBD
-  BDT
-  BGN
-  BHD
-  BMD
-  BND
-  BOB
-  BRL
-  BSD
-  BWP
-  BYN
-  BZD
-  CAD
-  CHF
-  CLP
-  CNY
-  COP
-  CRC
-  CUP
-  CVE
-  CZK
-  DJF
-  DKK
-  DOP
-  DZD
-  EGP
-  ETB
-  EUR
-  FJD
-  FKP
-  GBP
-  GEL
-  GHS
-  GIP
-  GMD
-  GNF
-  GTQ
-  GYD
-  HKD
-  HNL
-  HRK
-  HTG
-  HUF
-  IDR
-  ILS
-  INR
-  ISK
-  JMD
-  JOD
-  JPY
-  KES
-  KGS
-  KHR
-  KMF
-  KRW
-  KWD
-  KYD
-  KZT
-  LAK
-  LBP
-  LKR
-  LYD
-  MAD
-  MDL
-  MKD
-  MMK
-  MNT
-  MOP
-  MRU
-  MUR
-  MVR
-  MWK
-  MXN
-  MYR
-  MZN
-  NAD
-  NGN
-  NIO
-  NOK
-  NPR
-  NZD
-  OMR
-  PAB
-  PEN
-  PGK
-  PHP
-  PKR
-  PLN
-  PYG
-  QAR
-  RON
-  RSD
-  RUB
-  RWF
-  SAR
-  SBD
-  SCR
-  SEK
-  SGD
-  SHP
-  SLL
-  SOS
-  STN
-  SVC
-  SZL
-  THB
-  TND
-  TOP
-  TRY
-  TTD
-  TWD
-  TZS
-  UAH
-  UGX
-  USD
-  UYU
-  UZS
-  VEF
-  VND
-  VUV
-  WST
-  XAF
-  XCD
-  XOF
-  XPF
-  YER
-  ZAR
-  ZMW
-}
-
-type Customer implements Metadata & Node {
-  """The customer’s address."""
-  address: Address
-
-  """
-  Current balance, if any, being stored on the customer. If negative, the
-  customer has credit to apply to their next invoice. If positive, the customer
-  has an amount owed that will be added to their next invoice. The balance does
-  not refer to any unpaid invoices; it solely takes into account amounts that
-  have yet to be successfully applied to any invoice. This balance is only taken
-  into account as invoices are finalized.
-  """
-  balance: [CustomerBalanceTransaction!]!
+type Customer implements MetadataInterface & NodeInterface {
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
-  charges: [Charge!]!
-
-  """
-  Time at which the object was created. Measured in seconds since the Unix epoch.
-  """
-  created: Int!
-
-  """
-  Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
-  """
-  currency: String
-
-  """
-  When the customer’s latest invoice is billed by charging automatically,
-  delinquent is true if the invoice’s latest charge is failed. When the
-  customer’s latest invoice is billed by sending an invoice, delinquent is true
-  if the invoice is not paid by its due date.
-  """
-  delinquent: Boolean!
-
-  """
-  An arbitrary string attached to the object. Often useful for displaying to users.
-  """
-  description: String
-
-  """The customer's email address."""
-  email: String
-
-  """Unique identifier for the object."""
   id: ID!
-
-  """
-  Set of key-value pairs that you can attach to an object. This can be useful
-  for storing additional information about the object in a structured format.
-  """
-  metadata: [MetadataType!]!
-
-  """String representing the object's type."""
-  object: String!
-  subscriptions: [StripeSubscription!]!
-}
-
-type CustomerBalanceTransaction {
-  amount: Int!
-  currency: String!
-  id: ID!
+  metadata: [Metadata!]!
   object: String!
 }
 
-"""DateTime custom scalar type."""
-scalar DateTime
+scalar DateTimeScalar
 
-type Dob {
-  day: Int
-  month: Int
-  year: Int
-}
-
-type FeeDetails {
-  amount: Int
-  application: String
-  currency: String
-  description: String
-  id: String
-  type: String
-}
-
-type Good implements Metadata & Product {
-  """Whether the product is currently available for purchase."""
+type Good implements NodeInterface & ProductInterface {
   active: Boolean!
-
-  """
-  A list of up to 5 attributes that each SKU can provide values for (e.g.,
-  `["color", "size"]`). Only applicable to products of `type=good`.
-  """
   attributes: [String!]!
-
-  """
-  A short one-line description of the product, meant to be displayable to the
-  customer. Only applicable to products of `type=good`.
-  """
   caption: String
-
-  """
-  Time at which the object was created. Measured in seconds since the Unix epoch.
-  """
   created: Int!
-
-  """
-  An array of connect application identifiers that cannot purchase this product. Only applicable to products of `type=good`.
-  """
   deactivate_on: [String!]!
-
-  """
-  The product’s description, meant to be displayable to the customer. Only applicable to products of `type=good`.
-  """
   description: String
-
-  """Unique identifier for the object."""
   id: ID!
-
-  """
-  A list of up to 8 URLs of images for this product, meant to be displayable to
-  the customer. Only applicable to products of `type=good`.
-  """
   images: [String!]!
-
-  """
-  Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
-  """
   livemode: Boolean!
-
-  """
-  Set of key-value pairs that you can attach to an object. This can be useful
-  for storing additional information about the object in a structured format.
-  """
-  metadata: [MetadataType!]!
-
-  """
-  The product’s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
-  """
   name: String!
-
-  """
-  String representing the object’s type. Objects of the same type share the same value.
-  """
   object: String!
-
-  """
-  The dimensions of this product for shipping purposes. A SKU associated with
-  this product can override this value by having its own `package_dimensions`.
-  Only applicable to products of `type=good`.
-  """
   package_dimensions: PackageDimensions
-
-  """
-  Whether this product is a shipped good. Only applicable to products of `type=good`.
-  """
   shippable: Boolean!
-
-  """
-  The type of the product. The product is either of type good, which is eligible
-  for use with Orders and SKUs, or `service`, which is eligible for use with
-  Subscriptions and Plans.
-  """
   type: String!
   updated: Int!
-
-  """
-  A URL of a publicly-accessible webpage for this product. Only applicable to products of `type=good`.
-  """
   url: String!
-}
-
-type Invoice {
-  amount_due: Int!
-  amount_paid: Int!
-  id: ID
-  lines: [InvoiceLineItem!]!
-}
-
-type InvoiceLineItem implements Node {
-  amount: Int!
-  currency: String!
-
-  """Unique identifier for the object."""
-  id: ID!
-
-  """String representing the object's type."""
-  object: String!
-  quantity: Int!
 }
 
 enum LEGAL_ENTITY_TYPE {
@@ -493,292 +125,90 @@ enum LEGAL_ENTITY_TYPE {
   individual
 }
 
-type LegalEntity {
-  additional_owners: [AdditionalOwner!]!
-  address: Address
-  dob: Dob
-  first_name: String
-  last_name: String
-  maiden_name: String
-  personal_address: Address
-  personal_id_number_provided: Boolean
-  type: LEGAL_ENTITY_TYPE
-}
-
-"""Metadata interface type."""
-interface Metadata {
-  """
-  Set of key-value pairs that you can attach to an object. This can be useful
-  for storing additional information about the object in a structured format.
-  """
-  metadata: [MetadataType!]!
-}
-
-type MetadataType {
+type Metadata {
   key: String!
   value: String!
 }
 
-"""A Node is a resource with a globally unique identifier"""
-interface Node {
-  """Unique identifier for the object."""
-  id: ID!
+interface MetadataInterface {
+  metadata: [Metadata!]!
+}
 
-  """String representing the object's type."""
+interface NodeInterface {
+  id: ID!
   object: String!
 }
 
 type PackageDimensions {
-  """Height, in inches."""
   height: Float!
-
-  """Length, in inches."""
   length: Float!
-
-  """Weight, in ounces."""
   weight: Float!
-
-  """Width, in inches."""
   width: Float!
 }
 
-type Plan implements Metadata & Node {
-  """Whether the plan is currently available for new subscriptions."""
+input PaginationInput {
+  ending_before: String
+  limit: Int! = 0
+  starting_after: String
+}
+
+type Plan implements AmountInterface & CurrencyInterface & MetadataInterface & NodeInterface {
   active: Boolean!
-
-  """
-  Specifies a usage aggregation strategy for plans of usage_`type=metered`.
-  Allowed values are `sum` for summing up all usage during a period,
-  `last_during_period` for picking the last usage record reported within a
-  period, `last_ever` for picking the last usage record ever (across period
-  bounds) or `max` which picks the usage record with the maximum reported usage
-  during a period. Defaults to `sum`.
-  """
   aggregate_usage: String
-
-  """The amount in cents to be charged on the interval specified."""
-  amount: Int
-
-  """
-  Same as amount, but contains a decimal value with at most 12 decimal places.
-  """
+  amount: Amount!
   amount_decimal: String
-
-  """
-  Describes how to compute the price per period. Either `per_unit` or `tiered`.
-  `per_unit` indicates that the fixed amount (specified in `amount`) will be
-  charged per unit in `quantity` (for plans with `usage_type=licensed`), or per
-  unit of total usage (for plans with `usage_type=metered`). `tiered` indicates
-  that the unit pricing will be computed using a tiering strategy as defined
-  using the `tiers` and `tiers_mode` attributes.
-  """
   billing_scheme: String!
-
-  """
-  Time at which the object was created. Measured in seconds since the Unix epoch.
-  """
   created: Int!
-
-  """
-  Three-letter [ISO currency
-  code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be
-  a [supported currency](https://stripe.com/docs/currencies).
-  """
-  currency: String!
-  formattedAmount: String
-
-  """Unique identifier for the object."""
+  currency: Currency!
   id: ID!
-
-  """
-  One of `day`, `week`, `month` or `year`. The frequency with which a subscription should be billed.
-  """
   interval: String!
-
-  """
-  The number of intervals (specified in the `interval` property) between
-  subscription billings. For example, `interval=month` and `interval_count=3`
-  bills every 3 months.
-  """
   interval_count: Int!
-
-  """
-  Has the value true if the object exists in live mode or the value false if the object exists in test mode.
-  """
   livemode: Boolean!
-
-  """
-  Set of key-value pairs that you can attach to an object. This can be useful
-  for storing additional information about the object in a structured format.
-  """
-  metadata: [MetadataType!]!
-
-  """A brief description of the plan, hidden from customers."""
+  metadata: [Metadata!]!
   nickname: String
-
-  """String representing the object's type."""
   object: String!
-
-  """The product whose pricing this plan determines."""
-  product: Product!
-
-  """
-  Each element represents a pricing tier. This parameter requires
-  `billing_scheme` to be set to `tiered`. See also the documentation for
-  `billing_scheme`.
-  """
   tiers: [Tier!]
-
-  """
-  Defines if the tiering price should be `graduated` or `volume` based. In
-  `volume`-based tiering, the maximum quantity within a period determines the
-  per unit price, in `graduated` tiering pricing can successively change as the
-  quantity grows.
-  """
   tiers_mode: String
-
-  """
-  Apply a transformation to the reported usage or set quantity before computing
-  the billed price. Cannot be combined with `tiers`.
-  """
   transform_usage: TransformUsage
-
-  """
-  Default number of trial days when subscribing a customer to this plan using `trial_from_plan=true`.
-  """
   trial_period_days: Int
-
-  """
-  Configures how the quantity per period should be determined, can be either
-  `metered` or `licensed`. `licensed` will automatically bill the `quantity` set
-  for a plan when adding it to a subscription, `metered` will aggregate the
-  total usage based on usage records. Defaults to `licensed`.
-  """
   usage_type: String!
 }
 
-interface Product {
-  """Whether the product is currently available for purchase."""
+interface ProductInterface {
   active: Boolean!
-
-  """
-  Time at which the object was created. Measured in seconds since the Unix epoch.
-  """
   created: Int!
-
-  """Unique identifier for the object."""
-  id: ID!
-
-  """
-  Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
-  """
   livemode: Boolean!
-
-  """
-  The product’s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
-  """
   name: String!
-
-  """
-  String representing the object’s type. Objects of the same type share the same value.
-  """
-  object: String!
-
-  """
-  The type of the product. The product is either of type good, which is eligible
-  for use with Orders and SKUs, or `service`, which is eligible for use with
-  Subscriptions and Plans.
-  """
   type: String!
   updated: Int!
 }
 
 type Query {
-  account(id: ID!): Account
-  accounts: [Account!]!
-  charge(id: ID!): Charge
+  balance: Balance!
+  balanceTransaction(id: String!): BalanceTransaction!
+  balanceTransactions: [BalanceTransaction!]!
+  charge(id: String!): Charge!
   charges: [Charge!]!
-  countrySpecs(country: String!): CountrySpec
-  customer(id: ID!): Customer
-  customers(endingBefore: String, limit: Int, startingAfter: String): [Customer!]!
-  invoice(id: ID!): Invoice
-  invoices: [Invoice!]!
+  customer(id: String!): Customer!
+  customers: [Customer!]!
   plan(id: ID!): Plan
   plans: [Plan!]!
-  platform: Account!
-  product(id: ID!): Product
-  products: [Product!]!
-  subscription(id: ID!): StripeSubscription
-  subscriptions: [StripeSubscription!]!
-  upcomingInvoice(customerId: ID!): Invoice
+  product(id: ID!): ProductInterface
+  products: [ProductInterface!]!
 }
 
-type Service implements Metadata & Product {
-  """Whether the product is currently available for purchase."""
+type Service implements NodeInterface & ProductInterface {
   active: Boolean!
-
-  """
-  Time at which the object was created. Measured in seconds since the Unix epoch.
-  """
   created: Int!
-
-  """Unique identifier for the object."""
   id: ID!
-
-  """
-  Has the value `true` if the object exists in live mode or the value `false` if the object exists in test mode.
-  """
   livemode: Boolean!
-
-  """
-  Set of key-value pairs that you can attach to an object. This can be useful
-  for storing additional information about the object in a structured format.
-  """
-  metadata: [MetadataType!]!
-
-  """
-  The product’s name, meant to be displayable to the customer. Applicable to both `service` and `good` types.
-  """
   name: String!
-
-  """
-  String representing the object’s type. Objects of the same type share the same value.
-  """
   object: String!
   plans: [Plan!]!
-
-  """
-  Extra information about a product which will appear on your customer’s credit
-  card statement. In the case that multiple products are billed at once, the
-  first statement descriptor will be used. Only available on products of
-  `type=service`.
-  """
   statement_descriptor: String
-
-  """
-  The type of the product. The product is either of type good, which is eligible
-  for use with Orders and SKUs, or `service`, which is eligible for use with
-  Subscriptions and Plans.
-  """
   type: String!
-
-  """
-  A label that represents units of this product, such as seat(s), in Stripe and
-  on customers’ receipts and invoices. Only available on products of
-  `type=service`.
-  """
   unit_label: String
   updated: Int!
-}
-
-type StripeSubscription implements Node {
-  customer: Customer!
-
-  """Unique identifier for the object."""
-  id: ID!
-
-  """String representing the object's type."""
-  object: String!
 }
 
 type Tier {
@@ -797,20 +227,10 @@ type Tier {
   Same as unit_amount, but contains a decimal value with at most 12 decimal places.
   """
   unit_amount_decimal: String!
-
-  """Up to and including to this quantity will be contained in the tier."""
   up_to: Int!
 }
 
 type TransformUsage {
-  """Divide usage by this number."""
   divide_by: Int!
-
-  """After division, either round the result `up` or `down`."""
   round: String!
-}
-
-type VerificationFields {
-  additional: [String]
-  minimum: [String]
 }

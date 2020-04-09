@@ -7,28 +7,25 @@
   "author": "Jesús Ferretti <jferrettiboke@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev -r dotenv/config src/server.ts",
-    "gen:bindings": "graphql-binding --language typescript --input ./src/schema.ts --outputBinding ./src/generated/binding.ts",
-    "gen:types": "ts-node-dev -r dotenv/config src/generate-types.ts"
+    "build": "ts-node --log-error src/index.ts",
+    "debug": "ts-node-dev --inspect-brk --no-notify --transpileOnly --respawn ./src",
+    "dev": "ts-node-dev --no-notify --transpileOnly --respawn -r dotenv/config ./src/server.ts",
+    "start": "ts-node --transpile-only src/index.ts"
   },
   "dependencies": {
+    "@nexus/schema": "^0.13.1",
     "glob": "^7.1.6",
-    "graphql": "^14.5.8",
-    "graphql-binding": "^2.5.2",
-    "nexus": "^0.12.0-rc.3",
-    "stripe": "^7.13.0"
+    "graphql": "^15.0.0",
+    "stripe": "^8.39.1"
   },
   "devDependencies": {
-    "@types/faker": "^4.1.7",
+    "@types/faker": "^4.1.11",
     "@types/glob": "^7.1.1",
-    "@types/prettier": "^1.18.3",
-    "@types/stripe": "^7.11.0",
+    "@types/stripe": "^7.13.22",
+    "apollo-server": "^2.12.0",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
-    "graphql-yoga": "^1.18.3",
-    "nodemon": "^1.19.4",
-    "prettier": "^1.18.2",
     "ts-node-dev": "^1.0.0-pre.32",
-    "typescript": "^3.7.2"
+    "typescript": "^3.8.3"
   }
 }

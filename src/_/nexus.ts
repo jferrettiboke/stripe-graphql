@@ -1,4 +1,4 @@
-import { objectType } from "nexus";
+import { objectType } from "@nexus/schema";
 import generatedTypes from "./generated/mapped-types";
 
 interface TypeFields {
@@ -35,7 +35,7 @@ export function stripeObjectType(cfg: StripeObjectType) {
   let { fields } = cfg;
 
   if (fields && fields.includes("*")) {
-    fields = Object.keys(types[name]).map(key => key);
+    fields = Object.keys(types[name]).map((key) => key);
   }
 
   return objectType({
@@ -43,20 +43,20 @@ export function stripeObjectType(cfg: StripeObjectType) {
     definition(t) {
       t.string("wepaaaa", () => "weeeeepa");
 
-      fields.forEach(field => {
+      fields.forEach((field) => {
         if (typeof field === "string") {
           t.field(field, { type: types[name][field] });
         } else if (field && typeof field === "object") {
           t.field(field.alias, {
             type: types[name][field.name],
-            resolve: root => root[field.name]
+            resolve: (root) => root[field.name],
           });
         }
       });
       if (typeof definition === "function") {
         definition(t);
       }
-    }
+    },
   });
 }
 

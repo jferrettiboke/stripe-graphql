@@ -1,12 +1,13 @@
-import { queryField, idArg } from "nexus";
+import { queryField, idArg } from "@nexus/schema";
+import ProductInterface from "../ProductInterface";
 
 export const productQueryField = queryField("product", {
-  type: "Product",
+  type: ProductInterface,
   nullable: true,
   args: {
-    id: idArg({ required: true })
+    id: idArg({ required: true }),
   },
-  async resolve(root, { id }, context, info) {
-    return await context.stripe.products.retrieve(id);
-  }
+  async resolve(root, args, context, info) {
+    return await context.stripe.products.retrieve(args.id);
+  },
 });

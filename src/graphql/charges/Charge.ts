@@ -1,11 +1,11 @@
-import { objectType } from "nexus";
+import { objectType } from "@nexus/schema";
+import NodeInterface from "../NodeInterface";
+import AmountInterface from "../AmountInterface";
+import CurrencyInterface from "../CurrencyInterface";
 
 export const Charge = objectType({
   name: "Charge",
   definition(t) {
-    t.implements("Node");
-    t.int("amount", { nullable: true });
-    t.string("currency", { nullable: true });
-    t.string("status");
-  }
+    t.implements(NodeInterface, AmountInterface, CurrencyInterface);
+  },
 });

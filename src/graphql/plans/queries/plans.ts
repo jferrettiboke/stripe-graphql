@@ -1,4 +1,4 @@
-import { queryField } from "nexus";
+import { queryField } from "@nexus/schema";
 
 export const plansQueryField = queryField("plans", {
   type: "Plan",
@@ -6,5 +6,5 @@ export const plansQueryField = queryField("plans", {
   async resolve(root, args, context, info) {
     const { data } = await context.stripe.plans.list();
     return data;
-  }
+  },
 });
