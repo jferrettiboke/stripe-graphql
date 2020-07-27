@@ -10,7 +10,6 @@ export const CustomerCards = extendType({
         const { data } = await context.stripe.customers.listSources(id, {
           object: "card",
         });
-        console.log(id, data);
         return data;
       },
     });

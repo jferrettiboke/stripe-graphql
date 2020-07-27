@@ -9,23 +9,26 @@
   "scripts": {
     "build": "ts-node --log-error src/index.ts",
     "debug": "ts-node-dev --inspect-brk --no-notify --transpileOnly --respawn ./src",
-    "dev": "ts-node-dev --no-notify --transpileOnly --respawn -r dotenv/config ./src/server.ts",
-    "start": "ts-node --transpile-only src/index.ts"
+    "dev": "ts-node-dev --no-notify --respawn -r dotenv/config ./src/server.ts",
+    "start": "ts-node --transpile-only src/index.ts",
+    "gen": "genql --schema ./src/generated/schema.graphql --output ./generated"
   },
   "dependencies": {
-    "@nexus/schema": "^0.13.1",
+    "@nexus/schema": "^0.14.0",
+    "genql-runtime": "^1.1.22",
     "glob": "^7.1.6",
-    "graphql": "^15.0.0",
-    "stripe": "^8.39.1"
+    "graphql": "^15.3.0",
+    "stripe": "^8.79.0"
   },
   "devDependencies": {
-    "@types/faker": "^4.1.11",
-    "@types/glob": "^7.1.1",
-    "@types/stripe": "^7.13.22",
-    "apollo-server": "^2.12.0",
+    "@types/faker": "^4.1.12",
+    "@types/glob": "^7.1.3",
+    "@types/stripe": "^7.13.24",
+    "apollo-server": "^2.16.0",
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
-    "ts-node-dev": "^1.0.0-pre.32",
-    "typescript": "^3.8.3"
+    "genql-cli": "^1.1.22",
+    "ts-node-dev": "^1.0.0-pre.56",
+    "typescript": "^3.9.7"
   }
 }
