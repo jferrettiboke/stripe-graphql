@@ -5,7 +5,6 @@ import { createClient } from "../generated";
 
 const client = createClient({
   fetcher: (operation) => {
-    console.log("operation", operation);
     return graphql(
       schema,
       operation.query,
