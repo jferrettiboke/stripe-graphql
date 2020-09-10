@@ -37,6 +37,14 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  Address: { // root type
+    city?: string | null; // String
+    country?: string | null; // String
+    line1?: string | null; // String
+    line2?: string | null; // String
+    postal_code?: string | null; // String
+    state?: string | null; // String
+  }
   Amount: {};
   Balance: { // root type
     available: NexusGenRootTypes['BalanceFund'][]; // [BalanceFund!]!
@@ -86,6 +94,7 @@ export interface NexusGenRootTypes {
   Service: { // root type
     active: boolean; // Boolean!
     created: number; // Int!
+    description?: string | null; // String
     id: string; // ID!
     livemode: boolean; // Boolean!
     name: string; // String!
@@ -127,6 +136,14 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Address: { // field return type
+    city: string | null; // String
+    country: string | null; // String
+    line1: string | null; // String
+    line2: string | null; // String
+    postal_code: string | null; // String
+    state: string | null; // String
+  }
   Amount: { // field return type
     formatted: string; // String!
     raw: number; // Int!
@@ -191,8 +208,14 @@ export interface NexusGenFieldTypes {
     symbol: string; // String!
   }
   Customer: { // field return type
+    address: NexusGenRootTypes['Address'] | null; // Address
     bankAccounts: NexusGenRootTypes['BankAccount'][]; // [BankAccount!]!
     cards: NexusGenRootTypes['Card'][]; // [Card!]!
+    created: number; // Int!
+    currency: string | null; // String
+    delinquent: boolean; // Boolean!
+    description: string | null; // String
+    email: string | null; // String
     id: string; // ID!
     metadata: NexusGenRootTypes['Metadata'][]; // [Metadata!]!
     object: string; // String!
@@ -262,6 +285,7 @@ export interface NexusGenFieldTypes {
   Service: { // field return type
     active: boolean; // Boolean!
     created: number; // Int!
+    description: string | null; // String
     id: string; // ID!
     livemode: boolean; // Boolean!
     name: string; // String!
@@ -299,6 +323,7 @@ export interface NexusGenFieldTypes {
   ProductInterface: { // field return type
     active: boolean; // Boolean!
     created: number; // Int!
+    description: string | null; // String
     livemode: boolean; // Boolean!
     name: string; // String!
     type: string; // String!
@@ -336,7 +361,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Amount" | "Balance" | "BalanceFund" | "BalanceFundSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Currency" | "Customer" | "Good" | "Metadata" | "PackageDimensions" | "Plan" | "Query" | "Service" | "Tier" | "TransformUsage";
+export type NexusGenObjectNames = "Address" | "Amount" | "Balance" | "BalanceFund" | "BalanceFundSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Currency" | "Customer" | "Good" | "Metadata" | "PackageDimensions" | "Plan" | "Query" | "Service" | "Tier" | "TransformUsage";
 
 export type NexusGenInputNames = "PaginationInput";
 

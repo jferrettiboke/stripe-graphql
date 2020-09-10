@@ -7,6 +7,7 @@ export const ProductInterface = interfaceType({
     t.int("created");
     t.boolean("livemode");
     t.string("name");
+    t.string("description", {nullable: true});
     t.string("type");
     t.int("updated");
     t.resolveType(async (product) => {
