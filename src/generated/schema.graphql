@@ -236,10 +236,11 @@ type Query {
   charges: [Charge!]!
   customer(id: String!): Customer!
   customers: [Customer!]!
-  plan(id: ID!): Plan
   plans: [Plan!]!
   product(id: ID!): ProductInterface
   products: [ProductInterface!]!
+  subscription(id: ID!): Subscription
+  subscriptions: [Subscription!]!
 }
 
 type Service implements NodeInterface & ProductInterface {
@@ -255,6 +256,22 @@ type Service implements NodeInterface & ProductInterface {
   type: String!
   unit_label: String
   updated: Int!
+}
+
+type Subscription implements MetadataInterface & NodeInterface {
+  billing_cycle_anchor: Int!
+  cancel_at: Int
+  canceled_at: Int
+  collection_method: String!
+  created: Int!
+  current_period_end: Int!
+  current_period_start: Int!
+  customer: Customer!
+  id: ID!
+  latest_invoice: Int
+  metadata: [Metadata!]!
+  object: String!
+  status: String!
 }
 
 type Tier {

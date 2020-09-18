@@ -104,6 +104,19 @@ export interface NexusGenRootTypes {
     unit_label?: string | null; // String
     updated: number; // Int!
   }
+  Subscription: { // root type
+    billing_cycle_anchor: number; // Int!
+    cancel_at?: number | null; // Int
+    canceled_at?: number | null; // Int
+    collection_method: string; // String!
+    created: number; // Int!
+    current_period_end: number; // Int!
+    current_period_start: number; // Int!
+    id: string; // ID!
+    latest_invoice?: number | null; // Int
+    object: string; // String!
+    status: string; // String!
+  }
   Tier: { // root type
     flat_amount: number; // Int!
     flat_amount_decimal: string; // String!
@@ -117,8 +130,8 @@ export interface NexusGenRootTypes {
   }
   AmountInterface: NexusGenRootTypes['BalanceFund'] | NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Plan'];
   CurrencyInterface: NexusGenRootTypes['BalanceFund'] | NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Plan'];
-  MetadataInterface: NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['Plan'];
-  NodeInterface: NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['Good'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Service'];
+  MetadataInterface: NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Subscription'];
+  NodeInterface: NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['Good'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Service'] | NexusGenRootTypes['Subscription'];
   ProductInterface: NexusGenRootTypes['Good'] | NexusGenRootTypes['Service'];
   String: string;
   Int: number;
@@ -287,10 +300,11 @@ export interface NexusGenFieldTypes {
     charges: NexusGenRootTypes['Charge'][]; // [Charge!]!
     customer: NexusGenRootTypes['Customer']; // Customer!
     customers: NexusGenRootTypes['Customer'][]; // [Customer!]!
-    plan: NexusGenRootTypes['Plan'] | null; // Plan
     plans: NexusGenRootTypes['Plan'][]; // [Plan!]!
     product: NexusGenRootTypes['ProductInterface'] | null; // ProductInterface
     products: NexusGenRootTypes['ProductInterface'][]; // [ProductInterface!]!
+    subscription: NexusGenRootTypes['Subscription'] | null; // Subscription
+    subscriptions: NexusGenRootTypes['Subscription'][]; // [Subscription!]!
   }
   Service: { // field return type
     active: boolean; // Boolean!
@@ -305,6 +319,21 @@ export interface NexusGenFieldTypes {
     type: string; // String!
     unit_label: string | null; // String
     updated: number; // Int!
+  }
+  Subscription: { // field return type
+    billing_cycle_anchor: number; // Int!
+    cancel_at: number | null; // Int
+    canceled_at: number | null; // Int
+    collection_method: string; // String!
+    created: number; // Int!
+    current_period_end: number; // Int!
+    current_period_start: number; // Int!
+    customer: NexusGenRootTypes['Customer']; // Customer!
+    id: string; // ID!
+    latest_invoice: number | null; // Int
+    metadata: NexusGenRootTypes['Metadata'][]; // [Metadata!]!
+    object: string; // String!
+    status: string; // String!
   }
   Tier: { // field return type
     flat_amount: number; // Int!
@@ -352,10 +381,10 @@ export interface NexusGenArgTypes {
     customer: { // args
       id: string; // String!
     }
-    plan: { // args
+    product: { // args
       id: string; // ID!
     }
-    product: { // args
+    subscription: { // args
       id: string; // ID!
     }
   }
@@ -364,14 +393,14 @@ export interface NexusGenArgTypes {
 export interface NexusGenAbstractResolveReturnTypes {
   AmountInterface: "BalanceFund" | "BalanceTransaction" | "Charge" | "Plan"
   CurrencyInterface: "BalanceFund" | "BalanceTransaction" | "BankAccount" | "Charge" | "Plan"
-  MetadataInterface: "BankAccount" | "Card" | "Customer" | "Plan"
-  NodeInterface: "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "Good" | "Plan" | "Service"
+  MetadataInterface: "BankAccount" | "Card" | "Charge" | "Customer" | "Plan" | "Subscription"
+  NodeInterface: "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "Good" | "Plan" | "Service" | "Subscription"
   ProductInterface: "Good" | "Service"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Address" | "Amount" | "Balance" | "BalanceFund" | "BalanceFundSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Currency" | "Customer" | "Good" | "Metadata" | "PackageDimensions" | "Plan" | "Query" | "Service" | "Tier" | "TransformUsage";
+export type NexusGenObjectNames = "Address" | "Amount" | "Balance" | "BalanceFund" | "BalanceFundSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Currency" | "Customer" | "Good" | "Metadata" | "PackageDimensions" | "Plan" | "Query" | "Service" | "Subscription" | "Tier" | "TransformUsage";
 
 export type NexusGenInputNames = "PaginationInput";
 
