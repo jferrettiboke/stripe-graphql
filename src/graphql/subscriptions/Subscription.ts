@@ -1,11 +1,12 @@
 import { objectType } from "@nexus/schema";
 import NodeInterface from "../NodeInterface";
 import { MetadataInterface } from "../MetadataInterface";
+import { SubscriptionItemInterface } from "./SubscriptionItemInterface";
 
 export const Subscription = objectType({
   name: "Subscription",
   definition(t) {
-    t.implements(NodeInterface, MetadataInterface);
+    t.implements(NodeInterface, MetadataInterface, SubscriptionItemInterface);
     t.string("status");
     t.int("created");
     t.int("billing_cycle_anchor");

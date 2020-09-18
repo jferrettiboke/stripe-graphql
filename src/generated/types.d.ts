@@ -117,6 +117,10 @@ export interface NexusGenRootTypes {
     object: string; // String!
     status: string; // String!
   }
+  SubscriptionItem: { // root type
+    key: string; // String!
+    value: string; // String!
+  }
   Tier: { // root type
     flat_amount: number; // Int!
     flat_amount_decimal: string; // String!
@@ -133,6 +137,7 @@ export interface NexusGenRootTypes {
   MetadataInterface: NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Subscription'];
   NodeInterface: NexusGenRootTypes['BalanceTransaction'] | NexusGenRootTypes['BankAccount'] | NexusGenRootTypes['Card'] | NexusGenRootTypes['Charge'] | NexusGenRootTypes['Customer'] | NexusGenRootTypes['Good'] | NexusGenRootTypes['Plan'] | NexusGenRootTypes['Service'] | NexusGenRootTypes['Subscription'];
   ProductInterface: NexusGenRootTypes['Good'] | NexusGenRootTypes['Service'];
+  SubscriptionItemInterface: NexusGenRootTypes['Subscription'];
   String: string;
   Int: number;
   Float: number;
@@ -330,10 +335,15 @@ export interface NexusGenFieldTypes {
     current_period_start: number; // Int!
     customer: NexusGenRootTypes['Customer']; // Customer!
     id: string; // ID!
+    items: NexusGenRootTypes['SubscriptionItem'][]; // [SubscriptionItem!]!
     latest_invoice: number | null; // Int
     metadata: NexusGenRootTypes['Metadata'][]; // [Metadata!]!
     object: string; // String!
     status: string; // String!
+  }
+  SubscriptionItem: { // field return type
+    key: string; // String!
+    value: string; // String!
   }
   Tier: { // field return type
     flat_amount: number; // Int!
@@ -368,6 +378,9 @@ export interface NexusGenFieldTypes {
     type: string; // String!
     updated: number; // Int!
   }
+  SubscriptionItemInterface: { // field return type
+    items: NexusGenRootTypes['SubscriptionItem'][]; // [SubscriptionItem!]!
+  }
 }
 
 export interface NexusGenArgTypes {
@@ -396,17 +409,18 @@ export interface NexusGenAbstractResolveReturnTypes {
   MetadataInterface: "BankAccount" | "Card" | "Charge" | "Customer" | "Plan" | "Subscription"
   NodeInterface: "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Customer" | "Good" | "Plan" | "Service" | "Subscription"
   ProductInterface: "Good" | "Service"
+  SubscriptionItemInterface: "Subscription"
 }
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Address" | "Amount" | "Balance" | "BalanceFund" | "BalanceFundSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Currency" | "Customer" | "Good" | "Metadata" | "PackageDimensions" | "Plan" | "Query" | "Service" | "Subscription" | "Tier" | "TransformUsage";
+export type NexusGenObjectNames = "Address" | "Amount" | "Balance" | "BalanceFund" | "BalanceFundSourceTypes" | "BalanceTransaction" | "BankAccount" | "Card" | "Charge" | "Currency" | "Customer" | "Good" | "Metadata" | "PackageDimensions" | "Plan" | "Query" | "Service" | "Subscription" | "SubscriptionItem" | "Tier" | "TransformUsage";
 
 export type NexusGenInputNames = "PaginationInput";
 
 export type NexusGenEnumNames = "CARD_FUNDING_TYPE" | "LEGAL_ENTITY_TYPE";
 
-export type NexusGenInterfaceNames = "AmountInterface" | "CurrencyInterface" | "MetadataInterface" | "NodeInterface" | "ProductInterface";
+export type NexusGenInterfaceNames = "AmountInterface" | "CurrencyInterface" | "MetadataInterface" | "NodeInterface" | "ProductInterface" | "SubscriptionItemInterface";
 
 export type NexusGenScalarNames = "Boolean" | "CurrencyScalar" | "DateTimeScalar" | "Float" | "ID" | "Int" | "String";
 
