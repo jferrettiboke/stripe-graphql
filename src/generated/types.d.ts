@@ -199,9 +199,19 @@ export interface NexusGenFieldTypes {
   }
   Charge: { // field return type
     amount: NexusGenRootTypes['Amount']; // Amount!
+    created: number; // Int!
     currency: NexusGenRootTypes['Currency']; // Currency!
+    customer: NexusGenRootTypes['Customer']; // Customer!
+    description: string | null; // String
+    failure_code: string | null; // String
+    failure_message: string | null; // String
     id: string; // ID!
+    metadata: NexusGenRootTypes['Metadata'][]; // [Metadata!]!
     object: string; // String!
+    payment_intent: string; // String!
+    receipt_number: string | null; // String
+    receipt_url: string | null; // String
+    status: string; // String!
   }
   Currency: { // field return type
     code: string; // String!

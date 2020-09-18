@@ -82,11 +82,21 @@ enum CARD_FUNDING_TYPE {
   unknown
 }
 
-type Charge implements AmountInterface & CurrencyInterface & NodeInterface {
+type Charge implements AmountInterface & CurrencyInterface & MetadataInterface & NodeInterface {
   amount: Amount!
+  created: Int!
   currency: Currency!
+  customer: Customer!
+  description: String
+  failure_code: String
+  failure_message: String
   id: ID!
+  metadata: [Metadata!]!
   object: String!
+  payment_intent: String!
+  receipt_number: String
+  receipt_url: String
+  status: String!
 }
 
 type Currency {
