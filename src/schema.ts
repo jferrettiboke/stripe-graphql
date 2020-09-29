@@ -16,7 +16,7 @@ const protectedPaths = [
     'Query.balanceTransactions',
     'Query.charge',
     'Query.charges',
-    'Query.customer',
+    // 'Query.customer',
     'Query.customers',
     'Query.plan',
     'Query.plans'

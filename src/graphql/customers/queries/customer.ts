@@ -8,7 +8,6 @@ export const customer = queryField("customer", {
   },
   resolve: async (root, args, context, info) => {
     const customers = await context.stripe.customers.retrieve(args.id);
-    console.log(customers)
     return customers
-  },
+  }
 });
