@@ -400,6 +400,9 @@ export interface NexusGenArgTypes {
     subscription: { // args
       id: string; // ID!
     }
+    subscriptions: { // args
+      customer?: string | null; // ID
+    }
   }
 }
 
