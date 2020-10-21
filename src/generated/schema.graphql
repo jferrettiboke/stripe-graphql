@@ -2,6 +2,15 @@
 ### Do not make changes to this file directly
 
 
+type Address {
+  city: String
+  country: String
+  line1: String
+  line2: String
+  postal_code: String
+  state: String
+}
+
 type Amount {
   formatted: String!
   raw: Int!
@@ -73,11 +82,21 @@ enum CARD_FUNDING_TYPE {
   unknown
 }
 
-type Charge implements AmountInterface & CurrencyInterface & NodeInterface {
+type Charge implements AmountInterface & CurrencyInterface & MetadataInterface & NodeInterface {
   amount: Amount!
+  created: Int!
   currency: Currency!
+  customer: Customer!
+  description: String
+  failure_code: String
+  failure_message: String
   id: ID!
+  metadata: [Metadata!]!
   object: String!
+  payment_intent: String!
+  receipt_number: String
+  receipt_url: String
+  status: String!
 }
 
 type Currency {
@@ -92,8 +111,33 @@ interface CurrencyInterface {
 scalar CurrencyScalar
 
 type Customer implements MetadataInterface & NodeInterface {
+  """The customer’s address."""
+  address: Address
   bankAccounts: [BankAccount!]!
   cards: [Card!]!
+
+  """
+  Time at which the object was created. Measured in seconds since the Unix epoch.
+  """
+  created: Int!
+
+  """
+  Three-letter ISO code for the currency the customer can be charged in for recurring billing purposes.
+  """
+  currency: String
+
+  """
+  When the customer’s latest invoice is billed by charging automatically, delinquent is true if the invoice’s latest charge is failed. When the customer’s latest invoice is billed by sending an invoice, delinquent is true if the invoice is not paid by its due date.
+  """
+  delinquent: Boolean!
+
+  """
+  An arbitrary string attached to the object. Often useful for displaying to users.
+  """
+  description: String
+
+  """The customer's email address."""
+  email: String
   id: ID!
   metadata: [Metadata!]!
   object: String!
@@ -177,6 +221,7 @@ type Plan implements AmountInterface & CurrencyInterface & MetadataInterface & N
 interface ProductInterface {
   active: Boolean!
   created: Int!
+  description: String
   livemode: Boolean!
   name: String!
   type: String!
@@ -191,15 +236,17 @@ type Query {
   charges: [Charge!]!
   customer(id: String!): Customer!
   customers: [Customer!]!
-  plan(id: ID!): Plan
   plans: [Plan!]!
   product(id: ID!): ProductInterface
   products: [ProductInterface!]!
+  subscription(id: ID!): Subscription
+  subscriptions(customer: ID): [Subscription!]!
 }
 
 type Service implements NodeInterface & ProductInterface {
   active: Boolean!
   created: Int!
+  description: String
   id: ID!
   livemode: Boolean!
   name: String!
@@ -209,6 +256,32 @@ type Service implements NodeInterface & ProductInterface {
   type: String!
   unit_label: String
   updated: Int!
+}
+
+type Subscription implements MetadataInterface & NodeInterface & SubscriptionItemInterface {
+  billing_cycle_anchor: Int!
+  cancel_at: Int
+  canceled_at: Int
+  collection_method: String!
+  created: Int!
+  current_period_end: Int!
+  current_period_start: Int!
+  customer: Customer!
+  id: ID!
+  items: [SubscriptionItem!]!
+  latest_invoice: Int
+  metadata: [Metadata!]!
+  object: String!
+  status: String!
+}
+
+type SubscriptionItem {
+  key: String!
+  value: String!
+}
+
+interface SubscriptionItemInterface {
+  items: [SubscriptionItem!]!
 }
 
 type Tier {

@@ -7,6 +7,7 @@ export const customer = queryField("customer", {
     id: stringArg({ required: true }),
   },
   resolve: async (root, args, context, info) => {
-    return await context.stripe.customers.retrieve(args.id);
-  },
+    const customers = await context.stripe.customers.retrieve(args.id);
+    return customers
+  }
 });
